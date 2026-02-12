@@ -27,6 +27,7 @@ const config: HardhatUserConfig = {
     hardhat: {
       chainId: 31337,
       blockGasLimit: 30_000_000, // Increased for SSTORE2 tests
+      allowUnlimitedContractSize: true, // Contract exceeds EIP-170 by ~8 bytes; needed for local tests
     },
     localhost: {
       url: 'http://127.0.0.1:8545',

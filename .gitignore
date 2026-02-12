@@ -75,8 +75,8 @@ deployments/
 coverage.json
 
 docs
-frontend/ca.crt
-frontend/ca.key
+packages/frontend/ca.crt
+packages/frontend/ca.key
 
 # Machine Learning Models (ONNX, ORT, WASM)
 # Keep files locally but exclude from version control

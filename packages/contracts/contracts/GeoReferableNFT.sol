@@ -630,6 +630,7 @@ contract GeoReferableNFT is
     ) internal returns (uint256) {
         // Validate inputs
         // Note: Empty array check is performed by _requireSelfReferencesOnly in all callers
+        _validateCoordinates(params.latitude, params.longitude);
         if (params.refAddresses.length != params.refTokenIds.length) revert MismatchedLengths();
         if (params.colorIndex > 13) revert InvalidColorIndex();
 

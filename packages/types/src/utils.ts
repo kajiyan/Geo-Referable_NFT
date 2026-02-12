@@ -118,11 +118,11 @@ export function validateH3Index(h3Index: string): H3Validation {
 
 /**
  * Validate color index
- * @param colorIndex - Color index (0-255)
+ * @param colorIndex - Color index (0-13, matches Fumi.sol COLOR_TABLE)
  * @returns true if valid
  */
 export function validateColorIndex(colorIndex: number): boolean {
-  return Number.isInteger(colorIndex) && colorIndex >= 0 && colorIndex <= 255;
+  return Number.isInteger(colorIndex) && colorIndex >= 0 && colorIndex <= 13;
 }
 
 /**

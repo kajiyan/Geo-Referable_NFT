@@ -404,8 +404,8 @@ export const DEFAULTS = {
   /** Default elevation (sea level) */
   ELEVATION: 0,
 
-  /** Default message max length */
-  MESSAGE_MAX_LENGTH: 280,
+  /** Default message max length (matches GeoReferableNFT.sol _setText 54 code points limit) */
+  MESSAGE_MAX_LENGTH: 54,
 
   /** Map zoom levels with H3 resolutions */
   MAP_ZOOM_LEVELS: [

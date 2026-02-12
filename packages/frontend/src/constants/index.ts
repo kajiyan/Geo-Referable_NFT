@@ -57,7 +57,7 @@ export const MAX_TOKEN_INDEX_PER_TREE = 999
 export const APP_CONFIG = {
   NAME: 'Norosi DApp',
   DESCRIPTION: 'Norosi NFT Frontend Application',
-  URL: 'https://norosi.app',
+  URL: 'https://norosi.xyz',
 } as const
 
 // API endpoints
