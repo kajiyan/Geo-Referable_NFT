@@ -1,0 +1,1 @@
+export { ItemDetailReferringTo } from './ItemDetailReferringTo';

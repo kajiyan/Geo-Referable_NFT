@@ -1,0 +1,17 @@
+/**
+ * ItemDetailReferringTo styles
+ * Displays parent tokens (tokens this token references)
+ * Uses same visual patterns as ReferredByRow single-item layout
+ */
+
+.item-detail-referring-to {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 24px;  /* Space after main-group */
+}
+
+.item-detail-referring-to__wrapper {
+  width: 100%;
+  max-width: 400px;  /* Match referred-by-row__single-wrapper */
+}

@@ -1,0 +1,89 @@
+/**
+ * TokenMessageBar component styles
+ * Shared vertical marquee message bar
+ */
+
+/* ============================================
+   CSS Custom Properties
+   ============================================ */
+:root {
+  --token-message-bar-color-stone-950: #0c0a09;
+  --token-message-bar-msg-width: 16px;
+  --token-message-bar-msg-height: 88px;
+}
+
+/* ============================================
+   Message Bar Container
+   ============================================ */
+.token-message-bar {
+  width: var(--token-message-bar-msg-width);
+  height: var(--token-message-bar-msg-height);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--token-message-bar-bg, #a3d5ff);
+  color: var(--token-message-bar-color-stone-950);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* ============================================
+   Message Rotator (90deg rotation for vertical text)
+   ============================================ */
+.token-message-bar__rotator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--token-message-bar-msg-height);
+  height: var(--token-message-bar-msg-width);
+  transform: translate(-50%, -50%) rotate(90deg);
+  transform-origin: center center;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* ============================================
+   Marquee Animation
+   ============================================ */
+.token-message-bar__track {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.token-message-bar__track--animated {
+  animation: tokenMessageBarMarquee var(--msg-ad) linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.token-message-bar__track--animated.token-message-bar__track--visible {
+  animation-play-state: running;
+}
+
+.token-message-bar__unit {
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: var(--msg-gap, 0px);
+}
+
+@keyframes tokenMessageBarMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--msg-unit, 100px)));
+  }
+}
+
+/* ============================================
+   Accessibility: Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .token-message-bar__track--animated {
+    animation: none;
+  }
+}

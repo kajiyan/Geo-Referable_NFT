@@ -1,0 +1,44 @@
+/**
+ * Custom circular dashed border styles for CircleButton component
+ *
+ * Background:
+ * ────────────────────────────────────────────────────────────
+ * The Button component uses repeating-linear-gradient to create dashed borders,
+ * which works well for rectangular shapes. However, for circular buttons, we need
+ * a different approach to ensure the dashes follow the circular perimeter.
+ *
+ * Approach: CSS border-style with stroke-dasharray pattern
+ * ────────────────────────────────────────────────────────────
+ * We use standard CSS `border-style: dashed` which natively supports circular shapes.
+ * While we cannot precisely control the dash/gap ratio (1px dash, 1px gap) like in
+ * Button.css, the browser's default dashed rendering is visually acceptable for circles.
+ *
+ * Advantages:
+ * - Simple and performant (no complex gradients or SVG)
+ * - Native browser support for circular dashed borders
+ * - Automatically follows border-radius curve
+ * - SSR-friendly (pure CSS)
+ *
+ * Trade-offs:
+ * - Cannot achieve exact 1px dash, 1px gap pattern
+ * - Browser renders dashes with its own algorithm
+ * - Visual appearance may vary slightly across browsers
+ *
+ * Alternative Considered: SVG-based approach
+ * ────────────────────────────────────────────────────────────
+ * We could use an SVG circle with stroke-dasharray for precise control.
+ * However, this adds complexity (inline SVG or background-image) and is
+ * unnecessary if the CSS dashed border looks acceptable.
+ *
+ * If the current approach doesn't match Figma exactly, we can revisit SVG.
+ */
+
+/* White dashed circular border (for default variant) */
+.circle-button-dashed-border-white {
+  border: 1px dashed white;
+}
+
+/* Stone/600 dashed circular border (for white variant) */
+.circle-button-dashed-border-stone {
+  border: 1px dashed rgb(87, 83, 78);
+}

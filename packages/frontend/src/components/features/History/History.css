@@ -1,0 +1,428 @@
+/**
+ * History component styles
+ * Following the Button component's CSS file pattern
+ */
+
+/* ============================================
+   Constants (CSS Custom Properties)
+   ============================================ */
+:root {
+  --history-color-white: #ffffff;
+  --history-color-stone-950: #0c0a09;
+  --history-color-stone-500: #78716c;
+  --history-color-stone-300: #d6d3d1;
+  --history-container-height: 189px;
+  --history-msg-width: 16px;
+  --history-msg-height: 88px;
+  --history-gap: 8px;
+  --history-scrim-width: 107px;
+  --history-row-height: 189px;
+}
+
+/* ============================================
+   HistoryItem Styles
+   ============================================ */
+
+/* Link wrapper - remove default link styles */
+.history-item-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Item container */
+.history-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--history-gap);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Tag (reference count / distance) */
+.history-tag {
+  background-color: var(--history-color-stone-500);
+  border-radius: 8px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 16px;
+}
+
+.history-tag__text {
+  color: var(--history-color-white);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.333;
+  letter-spacing: 0.5px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Tag icon styling */
+.history-tag__icon {
+  flex-shrink: 0;
+  color: var(--history-color-white);
+}
+
+/* Message container */
+.history-message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Message bar */
+.history-message-bar {
+  width: var(--history-msg-width);
+  height: var(--history-msg-height);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--history-color-white);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* Default message bar background */
+.history-message-bar--default {
+  background-color: #B2B2B2;
+}
+
+/* Message rotator (90deg rotation for vertical text) */
+.history-message-rotator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--history-msg-height);
+  height: var(--history-msg-width);
+  transform: translate(-50%, -50%) rotate(90deg);
+  transform-origin: center center;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Token ID display */
+.history-token-id {
+  color: var(--history-color-stone-950);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Marquee track */
+.history-marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+/* Marquee animation - paused by default */
+.history-marquee-track--animated {
+  animation: msgMarquee var(--msg-ad) linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+/* Running state - animation plays when visible */
+.history-marquee-track--animated.history-marquee-track--visible {
+  animation-play-state: running;
+}
+
+/* Marquee unit (single text span) */
+.history-marquee-unit {
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: var(--msg-gap, 0px);
+}
+
+/* Center wrapper for tags */
+.history-center-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   HistoryList Styles
+   ============================================ */
+
+/* List container */
+.history-list {
+  background-color: var(--history-color-white);
+  width: 100%;
+  height: var(--history-container-height);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--history-color-stone-500);
+}
+
+/* Item container within list */
+.history-list__item {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   HistoryGrid Styles
+   ============================================ */
+
+/* Grid wrapper (contains grid and scrim as siblings) */
+.history-grid-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--history-color-white);
+}
+
+/* Transparent background when Norosi2D is enabled */
+.history-grid-wrapper--transparent {
+  background-color: transparent;
+}
+
+/* Grid container (vertical scroll, bottom-to-top) */
+.history-grid {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  scroll-snap-type: y mandatory;
+}
+
+/* Hide scrollbar for grid */
+.history-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.history-grid {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* ============================================
+   HistoryRow Styles
+   ============================================ */
+
+/* Row container (horizontal scroll) */
+.history-row {
+  background-color: transparent;
+  width: 100%;
+  height: var(--history-row-height);
+  min-height: var(--history-row-height);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--history-color-stone-500);
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-snap-align: start;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for row */
+.history-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Row with Swiper - disable native scrolling */
+.history-row--swiper {
+  overflow-x: hidden;
+  scroll-snap-type: none;
+}
+
+/* Single item row - center alignment */
+.history-row--single {
+  justify-content: center;
+}
+
+/* Row item container */
+.history-row__item {
+  flex-shrink: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+}
+
+/* Slide style for Swiper */
+.history-slide {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Single item slide - responsive width */
+.history-slide--single {
+  width: calc(1 / 3 * 100%);
+}
+
+@media (min-width: 1024px) {
+  .history-slide--single {
+    width: calc(1 / 5 * 100%);
+  }
+}
+
+@media (min-width: 1280px) {
+  .history-slide--single {
+    width: calc(1 / 7 * 100%);
+  }
+}
+
+@media (min-width: 1536px) {
+  .history-slide--single {
+    width: calc(1 / 9 * 100%);
+  }
+}
+
+/* ============================================
+   Scrim Styles (Skeleton Pattern)
+   ============================================ */
+
+/* Scrim container */
+.history-scrim-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Scrim shared styles - Skeleton diagonal stripe pattern */
+.history-scrim-left,
+.history-scrim-right {
+  height: 100%;
+  background-image: linear-gradient(
+    135deg,
+    rgba(120, 113, 108, 1) 5%,
+    transparent 5%,
+    transparent 50%,
+    rgba(120, 113, 108, 1) 50%,
+    rgba(120, 113, 108, 1) 55%,
+    transparent 55%,
+    transparent
+  );
+  background-size: 8px 8px;
+  /* Default (< 768px): 3 slides → cover 1 slide each side */
+  width: calc(1 / 3 * 100%);
+}
+
+/* Left scrim - dashed border on right */
+.history-scrim-left {
+  border-right: 1px dashed var(--history-color-stone-500);
+}
+
+/* Right scrim - dashed border on left */
+.history-scrim-right {
+  border-left: 1px dashed var(--history-color-stone-500);
+}
+
+/* lg (1024px): 5 slides → cover 2 slides each side = 2/5 */
+@media (min-width: 1024px) {
+  .history-scrim-left,
+  .history-scrim-right {
+    width: calc(2 / 5 * 100%);
+  }
+}
+
+/* xl (1280px): 7 slides → cover 3 slides each side */
+@media (min-width: 1280px) {
+  .history-scrim-left,
+  .history-scrim-right {
+    width: calc(3 / 7 * 100%);
+  }
+}
+
+/* 2xl (1536px): 9 slides → cover 4 slides each side */
+@media (min-width: 1536px) {
+  .history-scrim-left,
+  .history-scrim-right {
+    width: calc(4 / 9 * 100%);
+  }
+}
+
+/* ============================================
+   HistoryCanvas Styles
+   ============================================ */
+
+/* Canvas container - behind grid, above background */
+.history-canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Canvas element */
+.history-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   HistoryGridWithCanvas Styles
+   ============================================ */
+
+/* Combined container */
+.history-grid-with-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Norosi2D 背景アニメーション */
+.history-norosi2d {
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+/* Marquee animation */
+@keyframes msgMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--msg-unit, 100px)));
+  }
+}
+
+/* ============================================
+   Accessibility: Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .history-marquee-track--animated {
+    animation: none;
+  }
+}

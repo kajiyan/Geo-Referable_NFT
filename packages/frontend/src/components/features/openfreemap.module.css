@@ -1,0 +1,133 @@
+/* Container for OpenFreeMap */
+.ofm-wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ofm-toolbar {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 10px 0;
+}
+
+.ofm-btn {
+  border: 1px solid #e0e0e0;
+  background: #2f5f8b;
+  color: #fff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.ofm-btn.is-active,
+.ofm-btn:hover {
+  background: #4892d9;
+}
+
+.ofm-map {
+  width: 100%;
+  height: 70vh; /* Reasonable default inside the Vite template */
+  min-height: 360px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Marquee badge (clickable/tappable) */
+.ofm-marquee-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 4px 0;
+  /* Button reset styles */
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  /* Only allow clicks on child elements */
+  pointer-events: none;
+}
+
+.ofm-marquee-wrap::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  /* top: 0; left: 0; right: 0; bottom: 0; */
+  background-color: #78716C;
+  /* pointer-events: none; */
+  transform: translate(-50%, -50%);
+}
+
+.ofm-marquee {
+  --ofm-ad: 10s; /* animation duration (seconds) */
+  --ofm-tw: 0px; /* text width measured inline */
+  border-radius: 0;
+  padding: 0;
+  background: rgba(233, 135, 155, 0.85); /* pink-ish */
+  color: #0C0A09;
+  font-size: 24px;
+  line-height: calc(32 / 24); /* 1.33 */
+  letter-spacing: 0.005em;
+  overflow: hidden;
+  box-shadow: none; /* drop shadow removed */
+  /* Enable clicks on this element */
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.ofm-marquee-wrap:focus-visible {
+  outline: 2px solid #4892d9;
+  outline-offset: 2px;
+}
+
+/* Rotate the whole component so text flows bottom -> top.
+   The right-center of this element becomes the anchor (pivot). */
+.ofm-marquee--rotated {
+  display: inline-block;
+  transform-origin: right bottom;
+  transform: rotate(90deg) translateY(50%);
+}
+
+/* Single-span, text-shadow based seamless marquee */
+/* Track + units approach: duplicate units to fill width, shift by one unit */
+.ofm-marquee__track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: ofm-marquee-track var(--ofm-ad) linear infinite;
+  animation-play-state: paused;
+}
+
+.ofm-marquee[data-ready="true"][data-visible="true"] .ofm-marquee__track { animation-play-state: running; }
+.ofm-marquee[data-ready="false"] .ofm-marquee__track { animation-play-state: paused; }
+
+.ofm-marquee__unit { display: inline-block; white-space: nowrap; margin-right: var(--ofm-gap, 0px); }
+
+@keyframes ofm-marquee-track {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * var(--ofm-unit))); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ofm-marquee[data-respect-rm="true"] .ofm-marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+/* Number label under the marquee */
+.ofm-marquee__num {
+  font-weight: 700;
+  font-size: 32px;
+  color: #0C0A09;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  transform: translateX(50%);
+  /* Enable clicks on this element */
+  pointer-events: auto;
+  cursor: pointer;
+}

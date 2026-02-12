@@ -1,0 +1,114 @@
+/**
+ * WaveSVG component styles
+ * CSS animations matching Fumi.sol SVG rendering
+ *
+ * @see packages/contracts/contracts/Fumi.sol
+ */
+
+/* ============================================
+   Rising animation keyframes
+   Matches Fumi.sol @keyframes riseMain/riseParent
+   ============================================ */
+
+@keyframes waveRiseMain {
+  to {
+    stroke-dashoffset: 456;
+  }
+}
+
+@keyframes waveRiseParent {
+  to {
+    stroke-dashoffset: 228;
+  }
+}
+
+/* ============================================
+   Base SVG container
+   ============================================ */
+
+.wave-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* CSS Containment: isolate layout/paint calculations */
+  contain: strict;
+}
+
+/* ============================================
+   Background frame (white fill)
+   ============================================ */
+
+.wave-svg__bg {
+  fill: #fff;
+  stroke: none;
+}
+
+/* ============================================
+   Main waves group (.wm in Fumi.sol)
+   Animation: 8s linear infinite
+   ============================================ */
+
+.wave-svg__main {
+  /* GPU layer hint for animated children */
+  will-change: contents;
+}
+
+.wave-svg__main path {
+  stroke-dasharray: 41 16;
+  stroke-linecap: round;
+  animation: waveRiseMain 8s linear infinite;
+}
+
+/* ============================================
+   Parent waves group (.wp in Fumi.sol)
+   Animation: 10s linear infinite
+   Opacity: 0.85
+   ============================================ */
+
+.wave-svg__parent {
+  /* GPU layer hint for animated children */
+  will-change: contents;
+}
+
+.wave-svg__parent path {
+  stroke-dasharray: 41 16;
+  stroke-linecap: round;
+  animation: waveRiseParent 10s linear infinite;
+  opacity: 0.85;
+}
+
+/* ============================================
+   Paused state (for IntersectionObserver)
+   ============================================ */
+
+.wave-svg--paused .wave-svg__main,
+.wave-svg--paused .wave-svg__parent {
+  /* Release GPU resources when paused */
+  will-change: auto;
+}
+
+.wave-svg--paused .wave-svg__main path,
+.wave-svg--paused .wave-svg__parent path {
+  animation-play-state: paused;
+}
+
+/* ============================================
+   Static mode (colorIndex == 13)
+   Hides all animated elements
+   ============================================ */
+
+.wave-svg--static .wave-svg__main,
+.wave-svg--static .wave-svg__parent {
+  display: none;
+}
+
+/* ============================================
+   Accessibility: Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-svg__main path,
+  .wave-svg__parent path {
+    animation: none;
+  }
+}

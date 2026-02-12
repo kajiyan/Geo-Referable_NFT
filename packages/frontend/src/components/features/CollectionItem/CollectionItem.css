@@ -1,0 +1,332 @@
+/**
+ * CollectionItem component styles
+ * Based on Figma design: NFT/SM/Item (node-id: 221581:1776)
+ */
+
+/* ============================================
+   CSS Custom Properties
+   ============================================ */
+:root {
+  --collection-item-color-white: #ffffff;
+  --collection-item-color-stone-950: #0c0a09;
+  --collection-item-color-stone-600: #57534e;
+  --collection-item-color-stone-500: #78716c;
+  --collection-item-color-stone-300: #d6d3d1;
+  --collection-item-color-message-bg: var(--token-color-weather-light-drizzle);
+  --collection-item-container-height: 189px;
+  --collection-item-msg-width: 16px;
+  --collection-item-msg-height: 88px;
+  --collection-item-gap: 8px;
+  --collection-item-frame-padding: 6px;
+}
+
+/* ============================================
+   Wrapper Container (with bottom separator)
+   Now a Link element for card-wide clickability
+   ============================================ */
+.collection-item-wrapper {
+  display: block; /* Link elements need block display for layout */
+  position: relative;
+  width: 100%;
+  padding: 16px; /* Mobile: 16px for 278px footer in 320px+ viewport */
+  background-color: var(--collection-item-color-white);
+  border-bottom: 2px solid var(--collection-item-color-stone-600);
+  box-sizing: border-box;
+  overflow: hidden;
+  /* Hover feedback for clickable card */
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.15s ease;
+}
+
+.collection-item-wrapper:hover {
+  opacity: 0.9;
+}
+
+.collection-item-wrapper:focus-visible {
+  outline: 2px solid var(--collection-item-color-stone-600);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Coordinate Link (wraps the main card)
+   ============================================ */
+.collection-item-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.collection-item-link:focus-visible {
+  outline: 2px solid var(--collection-item-color-stone-600);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.collection-item-link:hover .collection-item {
+  /* Subtle hover feedback on the card */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Increase padding on larger screens (md: 768px+) */
+@media (min-width: 768px) {
+  .collection-item-wrapper {
+    padding: 24px;
+  }
+}
+
+/* Remove bottom border from last item in a list */
+[role="listitem"]:last-child > .collection-item-wrapper {
+  border-bottom: none;
+}
+
+/* ============================================
+   Main Container (outer frame)
+   ============================================ */
+.collection-item {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background-color: var(--collection-item-color-white);
+  border: 2px solid var(--collection-item-color-stone-600);
+  border-radius: 0;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   Inner Container (1px border around map)
+   ============================================ */
+.collection-item__inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 342 / 189;
+  border: 1px solid var(--collection-item-color-stone-600);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   Background Layer (WaveSVG - Fumi.sol compliant)
+   ============================================ */
+
+/**
+ * Background container for wave animation
+ * Full coverage of wrapper container (positioned behind article + footer)
+ *
+ * Performance optimization: Viewport culling with fade-in
+ * - Initial opacity: 0 (invisible)
+ * - When --visible modifier added: fade in over 0.3s
+ */
+.collection-item__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  /* Fade-in animation */
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  /* content-visibility: auto for browser-level rendering optimization */
+  /* Skips rendering of off-screen content */
+  content-visibility: auto;
+  /* Reserve space to prevent layout shifts */
+  contain-intrinsic-size: 100% 100%;
+}
+
+/**
+ * Visible state (after entering viewport)
+ * Applied by IntersectionObserver after SVG is inserted into DOM
+ */
+.collection-item__background--visible {
+  opacity: 1;
+}
+
+/**
+ * Main waves container
+ * Full height, matches Fumi.sol Y=0-400 range
+ */
+.collection-item__waves-main {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/**
+ * Parent waves container
+ * Bottom 55% (Fumi.sol: Y=200-420 out of 400 = 55%)
+ * Opacity 0.85 per Fumi.sol .wp class
+ */
+.collection-item__waves-parent {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 45%; /* 100% - 55% = 45% from top */
+  bottom: 0;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+/* ============================================
+   Background Map Layer
+   ============================================ */
+.collection-item__map {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.collection-item__map > * {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   Content Layer (above map)
+   ============================================ */
+.collection-item__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--collection-item-gap);
+  padding: 8px 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   Tag Styles (top: refCount, bottom: distance)
+   ============================================ */
+.collection-item__tag {
+  background-color: var(--collection-item-color-stone-500);
+  border-radius: 8px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 16px;
+}
+
+.collection-item__tag-text {
+  color: var(--collection-item-color-white);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.333;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.collection-item__center-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   Message Container (smoke + token ID)
+   ============================================ */
+.collection-item__message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ============================================
+   Message Bar (uses shared TokenMessageBar)
+   ============================================ */
+.collection-item__message-bar {
+  /* Override TokenMessageBar sizing if needed */
+  width: var(--collection-item-msg-width);
+  height: var(--collection-item-msg-height);
+}
+
+/* ============================================
+   Token ID
+   ============================================ */
+.collection-item__token-id {
+  color: var(--collection-item-color-stone-950);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.5px;
+  /* Remove vertical whitespace for precise alignment */
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+/* Marquee animation is now handled by shared TokenMessageBar component */
+
+/* ============================================
+   Footer Section (Fusen + IconButtons)
+   ============================================ */
+.collection-item__footer {
+  position: relative;
+  z-index: 10; /* Above stretched link to keep actions clickable */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  background-color: transparent;
+}
+
+.collection-item__actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Fusen link wrapper - remove default link styles */
+.collection-item__fusen-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* ============================================
+   Tag Icon (TelescopeIcon before distance)
+   ============================================ */
+.collection-item__tag-icon {
+  flex-shrink: 0;
+  color: var(--collection-item-color-white);
+}
+
+/* ============================================
+   Mint Info Badge (bottom-right of inner)
+   ============================================ */
+.mint-info-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background-color: var(--collection-item-color-white);
+  border: 1px solid var(--collection-item-color-stone-600);
+  /* Bottom-right corner: borders overlap with parent */
+  border-right: none;
+  border-bottom: none;
+}
+
+.mint-info-badge__icon {
+  font-size: 16px;
+  line-height: 1;
+  color: var(--collection-item-color-stone-600);
+}
+
+.mint-info-badge__time {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1; /* Match icon line-height for vertical alignment */
+  color: var(--collection-item-color-stone-600);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  white-space: nowrap;
+}

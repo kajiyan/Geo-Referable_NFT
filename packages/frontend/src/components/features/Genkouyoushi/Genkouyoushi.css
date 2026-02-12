@@ -1,0 +1,222 @@
+@layer components {
+  .genkouyoushi {
+    --genkouyoushi-color-border: #57534e;
+    --genkouyoushi-color-text-primary: #0C0A09;
+    --genkouyoushi-color-text-secondary: #57534e;
+    --genkouyoushi-caret-pattern: rgba(120, 113, 108, 1);
+    position: relative;
+    display: inline-flex;
+    font-size: var(--genkouyoushi-font-size);
+    color: var(--genkouyoushi-color-text-primary);
+  }
+
+  .genkouyoushi,
+  .genkouyoushi *,
+  .genkouyoushi *::before,
+  .genkouyoushi *::after {
+    box-sizing: border-box;
+  }
+
+  .genkouyoushi__body {
+    position: relative;
+    display: inline-block;
+    border: 2px solid var(--genkouyoushi-color-border);
+    padding: var(--genkouyoushi-padding-outer);
+    background-color: transparent;
+  }
+
+  .genkouyoushi__grid-container {
+    position: relative;
+    display: inline-block;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .genkouyoushi__table {
+    border: 1px solid var(--genkouyoushi-color-border);
+    display: inline-flex;
+    flex-direction: column;
+    gap: calc(var(--genkouyoushi-font-size) * var(--genkouyoushi-cell-gap-factor));
+    padding: 0 0 calc(var(--genkouyoushi-font-size) * var(--genkouyoushi-cell-padding-bottom-factor));
+  }
+
+  .genkouyoushi__row {
+    display: flex;
+    position: relative;
+    margin: -1px;
+  }
+
+  .genkouyoushi__row::before,
+  .genkouyoushi__row::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--genkouyoushi-color-border) 0 1px,
+      transparent 1px 2px
+    );
+    pointer-events: none;
+  }
+
+  .genkouyoushi__row::before {
+    top: 0;
+  }
+
+  .genkouyoushi__row::after {
+    bottom: 0;
+  }
+
+  .genkouyoushi__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: calc(var(--genkouyoushi-font-size) * var(--genkouyoushi-cell-width-factor));
+    height: calc(var(--genkouyoushi-font-size) * var(--genkouyoushi-cell-height-factor));
+    color: inherit;
+    overflow: hidden;
+  }
+
+  .genkouyoushi__cell::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--genkouyoushi-color-border) 0 1px,
+      transparent 1px 2px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .genkouyoushi__cell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent,
+      transparent 3px,
+      var(--genkouyoushi-caret-pattern) 3px,
+      var(--genkouyoushi-caret-pattern) 4px
+    );
+    opacity: 0;
+    transition: opacity 0.1s ease;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .genkouyoushi__cell.is-caret::before {
+    opacity: 1;
+    animation: genkouyoushi-blink 1s infinite;
+  }
+
+  .genkouyoushi__cell-text {
+    position: relative;
+    line-height: 1;
+    display: inline-block;
+    height: 1em;
+  }
+
+  @keyframes genkouyoushi-blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  .genkouyoushi__textarea {
+    width: 100%;
+    height: 100%;
+    font-size: var(--genkouyoushi-font-size);
+    letter-spacing: calc(var(--genkouyoushi-font-size) * var(--genkouyoushi-letter-spacing-factor));
+    line-height: calc(var(--genkouyoushi-font-size) * var(--genkouyoushi-line-height-factor));
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    position: absolute;
+    inset: 0;
+    padding: 0 0 0 calc(var(--genkouyoushi-font-size) * var(--genkouyoushi-padding-textarea-left-factor));
+    box-sizing: border-box;
+    resize: none;
+    /*
+     * テキストを透明にしつつ選択ハイライトは表示
+     * color/text-fill-color: テキストを不可視
+     * ::selection: 選択背景のみ表示
+     */
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    caret-color: transparent;
+    background: transparent;
+    border: none;
+    z-index: 2;
+    pointer-events: auto;
+    outline: none;
+    /* タップハイライトを無効化 */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* 選択ハイライト: 背景のみ表示、テキストは透明 */
+  .genkouyoushi__textarea::selection {
+    background: rgba(59, 130, 246, 0.3); /* blue-500 with opacity */
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+
+  .genkouyoushi__textarea::-moz-selection {
+    background: rgba(59, 130, 246, 0.3);
+    color: transparent !important;
+  }
+
+  .genkouyoushi__footer {
+    position: absolute;
+    left: var(--genkouyoushi-padding-outer);
+    right: var(--genkouyoushi-padding-outer);
+    bottom: var(--genkouyoushi-padding-outer);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    font-size: calc(var(--genkouyoushi-font-size) * var(--genkouyoushi-footer-font-size-factor));
+    line-height: calc(1em * var(--genkouyoushi-footer-line-height-ratio));
+    color: var(--genkouyoushi-color-text-secondary);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .genkouyoushi__footer-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .genkouyoushi__footer svg {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .genkouyoushi__cell::before {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .genkouyoushi {
+      --genkouyoushi-color-border: #000000;
+      --genkouyoushi-color-text-primary: #000000;
+      --genkouyoushi-color-text-secondary: #000000;
+      --genkouyoushi-caret-pattern: rgba(0, 0, 0, 1);
+    }
+  }
+}

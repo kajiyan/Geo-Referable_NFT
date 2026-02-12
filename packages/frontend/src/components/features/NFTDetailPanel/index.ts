@@ -1,0 +1,1 @@
+export { NFTDetailPanel } from './NFTDetailPanel'

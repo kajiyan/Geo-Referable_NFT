@@ -1,0 +1,36 @@
+/**
+ * Custom dashed border styles for Button component
+ * Using repeating-linear-gradient for precise 1px dash, 1px gap pattern
+ */
+
+/* White dashed border (for default variant) */
+.button-dashed-border-white {
+  background-image:
+    /* Top border - horizontal dashes */
+    repeating-linear-gradient(90deg, white 0, white 1px, transparent 1px, transparent 2px),
+    /* Right border - vertical dashes */
+    repeating-linear-gradient(180deg, white 0, white 1px, transparent 1px, transparent 2px),
+    /* Bottom border - horizontal dashes */
+    repeating-linear-gradient(90deg, white 0, white 1px, transparent 1px, transparent 2px),
+    /* Left border - vertical dashes */
+    repeating-linear-gradient(180deg, white 0, white 1px, transparent 1px, transparent 2px);
+  background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
+  background-position: left top, right top, left bottom, left top;
+  background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
+}
+
+/* Stone/600 dashed border (for outline variant) */
+.button-dashed-border-stone {
+  background-image:
+    /* Top border - horizontal dashes */
+    repeating-linear-gradient(90deg, rgb(87, 83, 78) 0, rgb(87, 83, 78) 1px, transparent 1px, transparent 2px),
+    /* Right border - vertical dashes */
+    repeating-linear-gradient(180deg, rgb(87, 83, 78) 0, rgb(87, 83, 78) 1px, transparent 1px, transparent 2px),
+    /* Bottom border - horizontal dashes */
+    repeating-linear-gradient(90deg, rgb(87, 83, 78) 0, rgb(87, 83, 78) 1px, transparent 1px, transparent 2px),
+    /* Left border - vertical dashes */
+    repeating-linear-gradient(180deg, rgb(87, 83, 78) 0, rgb(87, 83, 78) 1px, transparent 1px, transparent 2px);
+  background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
+  background-position: left top, right top, left bottom, left top;
+  background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
+}

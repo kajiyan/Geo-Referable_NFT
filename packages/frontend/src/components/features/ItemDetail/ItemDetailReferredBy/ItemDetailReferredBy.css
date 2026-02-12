@@ -1,0 +1,289 @@
+/**
+ * ItemDetailReferredBy styles
+ * Based on Figma design node-id=220883-12743
+ * Updated to match full-width card layout with navigation arrows
+ */
+
+/* ============================================
+   CSS Custom Properties
+   ============================================ */
+:root {
+  --referred-by-card-bg: #ffffff;
+  --referred-by-card-border: #d6d3d1;
+  --referred-by-text-primary: #0c0a09;
+  --referred-by-text-secondary: #57534e;
+  --referred-by-text-muted: #78716c;
+  --referred-by-card-padding: 16px;
+  --referred-by-row-gap: 8px;
+  /* Genkouyoushi medium width: 9cols×32px + borders + padding ≈ 302px */
+  --referred-by-card-inner-width: 302px;
+}
+
+/* ============================================
+   Container
+   ============================================ */
+.item-detail-referred-by {
+  display: flex;
+  flex-direction: column;
+  gap: var(--referred-by-row-gap);
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+/* ============================================
+   Loading State
+   ============================================ */
+.item-detail-referred-by__loading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--referred-by-row-gap);
+}
+
+.item-detail-referred-by__loading-skeleton {
+  height: 320px;
+  background: linear-gradient(
+    90deg,
+    #e7e5e4 0%,
+    #f5f5f4 50%,
+    #e7e5e4 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================
+   Row Styles
+   ============================================ */
+.referred-by-row {
+  width: 100%;
+  position: relative;
+}
+
+
+.referred-by-row--single {
+  display: flex;
+  justify-content: center;
+}
+
+.referred-by-row__single-wrapper {
+  width: 100%;
+  max-width: 400px;
+}
+
+.referred-by-row--swiper {
+  position: relative;
+  width: 100%;
+}
+
+/* Swiper container needs full width */
+.referred-by-row--swiper .swiper {
+  width: 100%;
+}
+
+/* Swiper wrapper for horizontal layout */
+.referred-by-row--swiper .swiper-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+/* ============================================
+   Swiper Slide
+   slidesPerView: 'auto' requires explicit width on slides
+   ============================================ */
+.referred-by-slide {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* ============================================
+   Navigation Overlay Layer
+   Positioned over Swiper, centered with card inner width
+   ============================================ */
+.referred-by-row__nav-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* Spacer matches Genkouyoushi width to position arrows */
+.referred-by-row__nav-spacer {
+  width: var(--referred-by-card-inner-width);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Custom Navigation Arrows
+   Based on Figma node-id=220883-13502
+   Simple icon only, no background or shadow
+   ============================================ */
+.referred-by-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  color: var(--referred-by-text-primary);
+  pointer-events: auto;
+  flex-shrink: 0;
+}
+
+.referred-by-nav:hover {
+  opacity: 0.7;
+}
+
+.referred-by-nav:active {
+  opacity: 0.5;
+}
+
+.referred-by-nav.swiper-button-disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.referred-by-nav.swiper-button-disabled:hover {
+  opacity: 0.2;
+}
+
+/* ============================================
+   Card Styles - Updated for Figma design
+   ============================================ */
+.referred-by-card {
+  display: flex;
+  justify-content: center;
+  padding: var(--referred-by-card-padding);
+  min-height: 280px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Inner wrapper - aligns header/footer with Genkouyoushi width */
+.referred-by-card__inner {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   Card Header - Inter Bold 20px, stone-600
+   ============================================ */
+.referred-by-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.referred-by-card__brand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.referred-by-card__logo {
+  color: var(--referred-by-text-secondary);
+  flex-shrink: 0;
+}
+
+/* Weather icon after NOROSI text */
+.referred-by-card__weather-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.referred-by-card__token-id {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--referred-by-text-secondary);
+  letter-spacing: 0.1px;
+}
+
+/* ============================================
+   Card Paper (Genkouyoushi)
+   ============================================ */
+.referred-by-card__paper {
+  margin-top: 8px;
+}
+
+/* ============================================
+   Card Footer - Date + IconButtons
+   Negative margin to overlap IconButtons with Genkouyoushi border
+   ============================================ */
+.referred-by-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -2px;
+  position: relative;
+  z-index: 5;
+}
+
+.referred-by-card__date {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--referred-by-text-secondary);
+  letter-spacing: 0.08px;
+}
+
+.referred-by-card__actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Ensure IconButtons have proper styling (md size = 48px) */
+.referred-by-card__actions .icon-button {
+  width: 48px;
+  height: 48px;
+}
+
+/* ============================================
+   Legacy Metrics (outside Genkouyoushi - deprecated)
+   Kept for backwards compatibility
+   ============================================ */
+.referred-by-card__metrics {
+  display: none; /* Hidden - metrics now inside Genkouyoushi */
+}
+
+.referred-by-card__ref-count,
+.referred-by-card__separator,
+.referred-by-card__distance {
+  display: none;
+}
+
+/* ============================================
+   Mobile Adjustments
+   ============================================ */
+@media (max-width: 479px) {
+  .referred-by-card {
+    padding: 12px;
+  }
+
+  /* Token ID and Date stay at 16px to match Fumi.sol on-chain SVG (.tm class) */
+  /* NorosiLogo and WeatherIcon stay at 20px to match Fumi.sol on-chain SVG (.tl class) */
+
+  .referred-by-card__actions .icon-button {
+    width: 40px;
+    height: 40px;
+  }
+}

@@ -1,0 +1,406 @@
+/**
+ * ItemDetail component styles
+ * Based on Figma design: node-id=220894-6496
+ */
+
+/* ============================================
+   CSS Custom Properties
+   ============================================ */
+:root {
+  --item-detail-color-white: #ffffff;
+  --item-detail-color-stone-950: #0c0a09;
+  --item-detail-color-stone-600: #57534e;
+  --item-detail-color-stone-500: #78716c;
+  --item-detail-color-stone-400: #a8a29e;
+  --item-detail-color-stone-300: #d6d3d1;
+  --item-detail-color-stone-200: #e7e5e4;
+  --item-detail-max-width: 480px;
+  --item-detail-padding: 16px;
+}
+
+/* ============================================
+   Page Container
+   ============================================ */
+.item-detail-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--item-detail-color-white);
+  /* Prevent horizontal scroll from Norosi2D canvas */
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Norosi2D Wave Background
+   ============================================ */
+
+/* Wave background layer (behind all content) */
+/* Norosi2D handles positioning with containerized={false} (fixed to viewport) */
+.item-detail-page__wave-bg {
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Main content layer (above wave background and TenHeader) */
+/* Full width to allow ReferredBy Swiper to extend to edges */
+.item-detail-page__content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  width: 100%;
+  /* No max-width here - ReferredBy needs full width for Swiper */
+  /* No padding here - applied per group instead */
+  /* Transparent background to show Norosi2D waves */
+  background-color: transparent;
+}
+
+/* Main sections group (Map, Metadata, Paper, Links, Activity) */
+/* Centered with max-width constraint */
+.item-detail-page__main-group {
+  max-width: var(--item-detail-max-width);
+  margin: 0 auto;
+  padding: var(--item-detail-padding);
+}
+
+/* ============================================
+   Loading State
+   ============================================ */
+.item-detail-page__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+}
+
+.item-detail-page__loading-text {
+  color: var(--item-detail-color-stone-500);
+  font-size: 14px;
+}
+
+/* ============================================
+   Error State
+   ============================================ */
+.item-detail-page__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+  text-align: center;
+}
+
+.item-detail-page__error-title {
+  color: var(--item-detail-color-stone-950);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.item-detail-page__error-message {
+  color: var(--item-detail-color-stone-500);
+  font-size: 14px;
+}
+
+/* ============================================
+   Not Found State
+   ============================================ */
+.item-detail-page__not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+  text-align: center;
+}
+
+.item-detail-page__not-found-title {
+  color: var(--item-detail-color-stone-950);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.item-detail-page__not-found-message {
+  color: var(--item-detail-color-stone-500);
+  font-size: 14px;
+}
+
+/* ============================================
+   Map Card Section (Frame 1733)
+   Based on CollectionItem structure
+   ============================================ */
+
+/* Main Container (outer frame with 2px border) */
+.item-detail-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background-color: var(--item-detail-color-white);
+  border: 2px solid var(--item-detail-color-stone-600);
+  border-radius: 0;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+/* Inner Container (1px border around map) */
+.item-detail-card__inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 342 / 189;
+  border: 1px solid var(--item-detail-color-stone-600);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Background Map Layer */
+.item-detail-card__map {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.item-detail-card__map > * {
+  width: 100%;
+  height: 100%;
+}
+
+/* Content Layer (above map) */
+.item-detail-card__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Tag Styles (top: refCount, bottom: distance) */
+.item-detail-card__tag {
+  background-color: var(--item-detail-color-stone-500);
+  border-radius: 8px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 16px;
+}
+
+.item-detail-card__tag-text {
+  color: var(--item-detail-color-white);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.333;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.item-detail-card__tag-icon {
+  flex-shrink: 0;
+  color: var(--item-detail-color-white);
+}
+
+.item-detail-card__center-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Message Container (smoke + token ID) */
+.item-detail-card__message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Message Bar */
+.item-detail-card__message-bar {
+  width: 16px;
+  height: 88px;
+}
+
+/* Token ID */
+.item-detail-card__token-id {
+  color: var(--item-detail-color-stone-950);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.5px;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+/* ============================================
+   Paper Section (Genkouyoushi)
+   ============================================ */
+.item-detail-paper {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.item-detail-paper__container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================
+   Links Section (Frame 1757)
+   Using Button component with fullWidth
+   ============================================ */
+.item-detail-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* Match button width to Genkouyoushi (medium size: ~480px) */
+.item-detail-links > * {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ============================================
+   Activity Section
+   ============================================ */
+.item-detail-activity {
+  margin-top: 24px;
+}
+
+.item-detail-activity__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--item-detail-color-stone-950);
+  margin-bottom: 12px;
+}
+
+.item-detail-activity__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-detail-activity__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background-color: var(--item-detail-color-stone-200);
+  border-radius: 8px;
+}
+
+.item-detail-activity__item-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--item-detail-color-white);
+  border-radius: 50%;
+  color: var(--item-detail-color-stone-600);
+}
+
+.item-detail-activity__item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-detail-activity__item-type {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--item-detail-color-stone-950);
+}
+
+.item-detail-activity__item-address {
+  font-size: 12px;
+  font-family: monospace;
+  color: var(--item-detail-color-stone-500);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-detail-activity__item-time {
+  font-size: 12px;
+  color: var(--item-detail-color-stone-400);
+  margin-top: 4px;
+}
+
+.item-detail-activity__empty {
+  text-align: center;
+  padding: 24px;
+  color: var(--item-detail-color-stone-500);
+  font-size: 14px;
+}
+
+/* ============================================
+   Info Section (Weather + Date, Owner)
+   ============================================ */
+.item-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.item-detail-info__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.item-detail-info__weather-icon {
+  flex-shrink: 0;
+  color: var(--item-detail-color-stone-600);
+}
+
+.item-detail-info__date {
+  font-size: 14px;
+  color: var(--item-detail-color-stone-950);
+  font-family: var(--font-datetime), Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.item-detail-info__user-icon {
+  flex-shrink: 0;
+  color: var(--item-detail-color-stone-600);
+}
+
+.item-detail-info__address {
+  font-size: 14px;
+  font-family: monospace;
+  color: var(--item-detail-color-stone-950);
+}
+
+/* ============================================
+   Back Button
+   ============================================ */
+.item-detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  background: none;
+  border: none;
+  color: var(--item-detail-color-stone-600);
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+}
+
+.item-detail-back:hover {
+  background-color: var(--item-detail-color-stone-200);
+}
