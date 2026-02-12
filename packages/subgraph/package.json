@@ -1,0 +1,33 @@
+{
+  "name": "@geo-relational-nft/subgraph",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Graph subgraph for GeoRelationalNFT contract",
+  "scripts": {
+    "codegen": "graph codegen subgraph.amoy.yaml",
+    "build": "graph build subgraph.amoy.yaml",
+    "codegen:amoy": "graph codegen subgraph.amoy.yaml",
+    "build:amoy": "graph build subgraph.amoy.yaml",
+    "deploy:amoy": "graph deploy --studio geo-relational-nft-amoy subgraph.amoy.yaml",
+    "codegen:polygon": "graph codegen subgraph.polygon.yaml",
+    "build:polygon": "graph build subgraph.polygon.yaml",
+    "deploy:polygon": "graph deploy --studio geo-relational-nft-polygon subgraph.polygon.yaml",
+    "auth": "bash -c 'source .env && graph auth --studio $GRAPH_STUDIO_DEPLOY_KEY'",
+    "auth:amoy": "bash -c 'source .env && graph auth --studio $AMOY_DEPLOY_KEY'",
+    "auth:polygon": "bash -c 'source .env && graph auth --studio $POLYGON_DEPLOY_KEY'",
+    "deploy:amoy:full": "npm run auth:amoy && npm run codegen:amoy && npm run build:amoy && npm run deploy:amoy",
+    "deploy:polygon:full": "npm run auth:polygon && npm run codegen:polygon && npm run build:polygon && npm run deploy:polygon",
+    "test": "graph test",
+    "clean": "rm -rf build generated node_modules",
+    "copy-abi": "cp ../contracts/artifacts/contracts/GeoRelationalNFT.sol/GeoRelationalNFT.json abis/"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.68.0",
+    "@graphprotocol/graph-ts": "^0.31.0"
+  },
+  "devDependencies": {
+    "matchstick-as": "^0.5.0",
+    "mustache": "^4.2.0",
+    "dotenv-cli": "^7.4.2"
+  }
+}

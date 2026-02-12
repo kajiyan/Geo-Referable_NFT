@@ -1,0 +1,49 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: GeoRelationalNFT
+    network: polygon-amoy
+    source:
+      abi: GeoRelationalNFT
+      address: "0xCF3C96a9a7080c5d8bBA706250681A9d27573847"
+      startBlock: 33148577
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - Token
+        - User
+        - H3Cell
+        - TokenReference
+        - Tree
+        - DistanceRecord
+        - MintEvent
+        - Transfer
+        - RefCountUpdate
+        - ReferenceUpdate
+        - MetadataUpdate
+        - GlobalStats
+      abis:
+        - name: GeoRelationalNFT
+          file: ./abis/GeoRelationalNFT.json
+      eventHandlers:
+        - event: FumiMinted(indexed uint256,indexed address,indexed address,string,string,string,string,string)
+          handler: handleFumiMinted
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: UpdateNode(indexed uint256,indexed address,address[],uint256[][],address[],uint256[][])
+          handler: handleUpdateNode
+        - event: RefCountUpdated(indexed uint256,uint256)
+          handler: handleRefCountUpdated
+        - event: UniqueRefCountUpdated(indexed uint256,uint256)
+          handler: handleUniqueRefCountUpdated
+        - event: ReferenceCreated(indexed uint256,indexed uint256,uint256,bool)
+          handler: handleReferenceCreated
+        - event: MetadataUpdate(uint256)
+          handler: handleMetadataUpdate
+      file: ./src/mapping.ts

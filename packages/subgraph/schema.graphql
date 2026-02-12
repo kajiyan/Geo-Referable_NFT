@@ -1,0 +1,276 @@
+##############################################
+# Core Entities
+##############################################
+
+##############################################
+# H3Cell Entity (Mutable) - REDESIGNED for V3.1
+##############################################
+type H3Cell @entity {
+  id: String!                         # H3 index string
+  resolution: Int!                    # 6, 8, 10, or 12
+  tokenCount: BigInt!                 # Total tokens in this cell
+
+  # Virtual fields - derived from Token.h3CellR* (no storage!)
+  # Use Token.h3CellR6, Token.h3CellR8, etc. for efficient queries
+}
+
+##############################################
+# Token Entity (Mutable) - UPDATED for V3.1
+##############################################
+type Token @entity {
+  # Identity
+  id: Bytes!                          # Token ID as Bytes
+  tokenId: BigInt!                    # Token ID as BigInt (for sorting)
+  owner: User!                        # Current owner
+
+  # Geographic Data (stored as BigInt to match contract int256)
+  latitude: BigInt!                   # Millionths of degrees
+  longitude: BigInt!                  # Millionths of degrees
+  elevation: BigInt!                  # Ten-thousandths of meters
+  quadrant: Int!                      # 0=NE, 1=SE, 2=NW, 3=SW
+
+  # H3 Geospatial Indexes (4 levels) - String for compatibility with H3 libraries
+  h3r6: String!                       # City-level (~3.2km)
+  h3r8: String!                       # District-level (~0.5km)
+  h3r10: String!                      # Street-level (~0.07km)
+  h3r12: String!                      # Building-level (~0.01km)
+
+  # NEW: Direct references to H3Cell entities for efficient joins
+  h3CellR6: H3Cell!
+  h3CellR8: H3Cell!
+  h3CellR10: H3Cell!
+  h3CellR12: H3Cell!
+
+  # Token Attributes
+  colorIndex: BigInt!                 # 0-255 (changed from Int to BigInt)
+  tree: Tree!                         # Tree entity reference
+  treeId: BigInt!                     # Tree ID as BigInt (for queries)
+  generation: BigInt!                 # Generation number (unlimited)
+  treeIndex: BigInt!                  # Tree index 0-999
+
+  # Text Content
+  message: String!                    # User message (inline or SSTORE2)
+
+  # SVG Generation Data
+  refCount: BigInt!                   # Reference count (updated via RefCountUpdated event)
+  uniqueRefCount: BigInt!             # Unique referrer count (updated via UniqueRefCountUpdated event)
+  totalDistance: BigInt!              # Sum of all reference distances (calculated in Subgraph)
+
+  # Timestamps
+  createdAt: BigInt!                  # Block timestamp
+  blockNumber: BigInt!                # Block number
+  transactionHash: Bytes!             # Transaction hash
+
+  # ERC-5521 References (using @derivedFrom for efficiency)
+  referringTo: [TokenReference!]! @derivedFrom(field: "fromToken")
+  referredBy: [TokenReference!]! @derivedFrom(field: "toToken")
+
+  # Events
+  mintEvent: MintEvent                # Associated mint event
+  refCountUpdates: [RefCountUpdate!]! @derivedFrom(field: "token")
+  transferEvents: [Transfer!]! @derivedFrom(field: "token")
+}
+
+##############################################
+# TokenReference Entity (Immutable) - NEW for V3.1
+##############################################
+type TokenReference @entity(immutable: true) {
+  id: Bytes!                          # Composite: "{fromTokenId}-{toTokenId}"
+  fromToken: Token!                   # Source token
+  toToken: Token!                     # Target token
+  distance: BigInt!                   # Distance in meters (calculated by GeoMath)
+  isInitialReference: Boolean!        # True if this is the first reference (tree root)
+
+  # Metadata for filtering/sorting
+  fromLatitude: BigInt!
+  fromLongitude: BigInt!
+  toLatitude: BigInt!
+  toLongitude: BigInt!
+
+  # Context
+  createdAt: BigInt!                  # Block timestamp
+  blockNumber: BigInt!                # Block number
+  transactionHash: Bytes!             # Transaction hash
+}
+
+##############################################
+# Tree Entity (Mutable) - NEW for V3.1
+##############################################
+type Tree @entity {
+  id: Bytes!                          # Tree ID as Bytes
+  treeId: BigInt!                     # Tree ID as BigInt (for sorting)
+  tokens: [Token!]! @derivedFrom(field: "tree")
+  totalTokens: BigInt!                # Total tokens in this tree
+  maxGeneration: BigInt!              # Maximum generation
+
+  # NEW: Distance tracking
+  distanceRecords: [DistanceRecord!]! @derivedFrom(field: "tree")
+  totalDistanceToMaxGen: BigInt!      # Cached total distance (updated on new gen)
+
+  # Timestamps
+  firstTokenAt: BigInt!               # First token timestamp
+  lastTokenAt: BigInt!                # Last token timestamp
+}
+
+##############################################
+# DistanceRecord Entity (Immutable) - NEW for V3.1
+##############################################
+type DistanceRecord @entity(immutable: true) {
+  id: Bytes!                          # Composite: "{tree}-{generation}"
+  tree: Tree!                         # Direct reference to Tree
+  generation: BigInt!                 # Generation number
+  distance: BigInt!                   # Distance in meters
+
+  # NEW: Cumulative distance for optimization
+  cumulativeDistance: BigInt!         # Sum of all distances from gen 0 to this gen
+  previousGeneration: BigInt!         # Previous generation number
+  previousDistance: BigInt!           # Previous generation's distance
+
+  # Context
+  recordedByToken: Bytes              # Token ID that created this record (nullable)
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+##############################################
+# User Entity (Mutable)
+##############################################
+type User @entity {
+  id: Bytes!                          # User address
+  address: Bytes!                     # User address (duplicate for convenience)
+  balance: BigInt!                    # Token balance
+  tokens: [Token!]! @derivedFrom(field: "owner")
+
+  # Statistics
+  totalMinted: BigInt!                # Total tokens minted by this user
+  totalReceived: BigInt!              # Total tokens received
+  totalSent: BigInt!                  # Total tokens sent
+
+  # Timestamps
+  createdAt: BigInt!
+  updatedAt: BigInt!
+}
+
+##############################################
+# Event Entities (Immutable)
+##############################################
+
+##############################################
+# MintEvent Entity (Immutable)
+##############################################
+type MintEvent @entity(immutable: true) {
+  id: Bytes!                          # Transaction hash + log index
+  tokenId: BigInt!
+  token: Token!
+  to: User!
+  from: Bytes                         # Base token owner (for mintWithChain)
+
+  # Token metadata at mint time
+  treeId: BigInt!
+  generation: BigInt!
+  treeIndex: BigInt!
+
+  # H3 geospatial index (4-level structure)
+  h3r6: String!
+  h3r8: String!
+  h3r10: String!
+  h3r12: String!
+
+  # Transaction details
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+##############################################
+# Transfer Entity (Immutable)
+##############################################
+type Transfer @entity(immutable: true) {
+  id: Bytes!                          # Transaction hash + log index
+  tokenId: BigInt!
+  token: Token!
+  from: User!
+  to: User!
+
+  # Transaction details
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+##############################################
+# RefCountUpdate Entity (Immutable) - NEW for V3.1
+##############################################
+type RefCountUpdate @entity(immutable: true) {
+  id: Bytes!                          # Transaction hash + log index
+  tokenId: BigInt!
+  token: Token!
+  oldRefCount: BigInt!
+  newRefCount: BigInt!
+
+  # Transaction details
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+##############################################
+# ReferenceUpdate Entity (Immutable)
+##############################################
+type ReferenceUpdate @entity(immutable: true) {
+  id: Bytes!                          # Transaction hash + log index
+  tokenId: BigInt!
+  token: Token!
+  sender: Bytes!
+
+  # Reference arrays (updated on UpdateNode event)
+  referringContracts: [Bytes!]!
+  referringTokenIds: [BigInt!]!
+
+  # Transaction details
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+##############################################
+# MetadataUpdate Entity (Immutable)
+##############################################
+type MetadataUpdate @entity(immutable: true) {
+  id: Bytes!                          # Transaction hash + log index
+  tokenId: BigInt!
+  token: Token!
+
+  # Transaction details
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+##############################################
+# Global Statistics Entity (Mutable)
+##############################################
+type GlobalStats @entity {
+  id: Bytes!                          # "global" as Bytes
+  totalTokens: BigInt!
+  totalUsers: BigInt!
+  totalTrees: BigInt!
+  totalReferences: BigInt!            # Total TokenReference entities
+  maxGeneration: BigInt!
+  totalTransfers: BigInt!
+  totalMints: BigInt!
+
+  # H3Cell statistics
+  totalH3CellsR6: BigInt!
+  totalH3CellsR8: BigInt!
+  totalH3CellsR10: BigInt!
+  totalH3CellsR12: BigInt!
+
+  lastUpdated: BigInt!
+}
