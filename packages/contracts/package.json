@@ -2,7 +2,7 @@
   "name": "@geo-nft/contracts",
   "version": "0.1.0",
   "private": true,
-  "description": "Smart contracts for Geo-relational NFT",
+  "description": "Smart contracts for Geo-Referable NFT",
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",

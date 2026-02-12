@@ -2,7 +2,7 @@
   "name": "@geo-nft/root",
   "version": "0.1.0",
   "private": true,
-  "description": "Geo-relational NFT Project - A monorepo for geo-based NFT smart contracts",
+  "description": "Geo-Referable NFT Project - A monorepo for geo-based NFT smart contracts",
   "scripts": {
     "build": "pnpm -r build",
     "test": "pnpm -r test",

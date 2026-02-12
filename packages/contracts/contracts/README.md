@@ -1,4 +1,4 @@
-# GeoRelationalNFT (NOROSI) - Contract Architecture
+# GeoReferableNFT (NOROSI) - Contract Architecture
 
 完全なオンチェーン地理位置ベースNFTシステム。地球上の座標を表現し、トークン間の参照関係と距離追跡により、探索と発見のグローバルネットワークを形成します。
 
@@ -6,7 +6,7 @@
 
 ```
 contracts/
-├── GeoRelationalNFT.sol          # メインNFTコントラクト (1472行)
+├── GeoReferableNFT.sol          # メインNFTコントラクト (1472行)
 ├── Fumi.sol                      # オンチェーンSVG生成 (448行)
 ├── interfaces/                   # コントラクトインターフェース
 │   ├── IFumi.sol                # SVG生成インターフェース
@@ -27,14 +27,14 @@ contracts/
 
 ## 🏗️ Core Architecture
 
-### 1. GeoRelationalNFT.sol - メインコントラクト
+### 1. GeoReferableNFT.sol - メインコントラクト
 
 地理座標をtokenIdにエンコードし、トークン間の参照関係を管理するメインNFTコントラクト。
 
 #### 継承チェーン
 
 ```
-GeoRelationalNFT
+GeoReferableNFT
   ├─ ERC721                  # 基本NFT機能
   ├─ ERC721Enumerable        # トークン列挙機能
   ├─ IERC5521                # 双方向参照NFT
@@ -622,7 +622,7 @@ function safeStaticCall(
 
 ### 参照関係の設計哲学
 
-GeoRelationalNFTの中核となる参照システムは、**ツリー構造による系譜追跡**と**外部NFTとの相互運用**の両立を実現します。
+GeoReferableNFTの中核となる参照システムは、**ツリー構造による系譜追跡**と**外部NFTとの相互運用**の両立を実現します。
 
 #### 1. 初期参照とツリー構造
 
@@ -890,7 +890,7 @@ if (_treeCounter[tree] >= 1000) revert TooManyTokensInTree(); // ✅
 
 各コントラクトが単一責任を持ち、機能を明確に分離:
 
-- **GeoRelationalNFT**: コア論理とストレージ
+- **GeoReferableNFT**: コア論理とストレージ
 - **Fumi**: 視覚表現
 - **GeoMath**: 地理計算
 - **GeoMetadata**: メタデータフォーマット
@@ -1018,7 +1018,7 @@ uint256 constant INTERFACE_CHECK_GAS = 5000;
 mapping(address => uint256) private _nonces;
 
 // ドメインセパレーター
-EIP712("GeoRelationalNFT", "2")
+EIP712("GeoReferableNFT", "2")
 ```
 
 ### 初期参照の不変性
@@ -1099,7 +1099,7 @@ IGeoMetadata public immutable geoMetadata;
 
 ```typescript
 import { createPublicClient, createWalletClient } from 'viem';
-import { GeoRelationalNFT_ABI } from './abi';
+import { GeoReferableNFT_ABI } from './abi';
 
 // クライアント作成
 const publicClient = createPublicClient({ ... });
@@ -1108,7 +1108,7 @@ const walletClient = createWalletClient({ ... });
 // 署名ミント
 const { request } = await publicClient.simulateContract({
   address: CONTRACT_ADDRESS,
-  abi: GeoRelationalNFT_ABI,
+  abi: GeoReferableNFT_ABI,
   functionName: 'signedMint',
   args: [
     toAddress,
@@ -1133,8 +1133,8 @@ const hash = await walletClient.writeContract(request);
 ### Solidity での外部統合
 
 ```solidity
-// 他のコントラクトからGeoRelationalNFTを参照
-interface IGeoRelationalNFT {
+// 他のコントラクトからGeoReferableNFTを参照
+interface IGeoReferableNFT {
     function decodeTokenId(uint256 tokenId)
         external view returns (DecodedTokenData memory);
 
@@ -1143,7 +1143,7 @@ interface IGeoRelationalNFT {
 }
 
 contract MyContract {
-    IGeoRelationalNFT public geoNFT;
+    IGeoReferableNFT public geoNFT;
 
     function getTokenLocation(uint256 tokenId)
         external view returns (int256 lat, int256 lon) {
@@ -1252,7 +1252,7 @@ event MetadataUpdate(uint256 _tokenId);
 2. GeoMath.sol         # 依存なし
 3. GeoMetadata.sol     # 依存なし
 4. Fumi.sol            # DateTime必要
-5. GeoRelationalNFT.sol # Fumi, GeoMath, GeoMetadata必要
+5. GeoReferableNFT.sol # Fumi, GeoMath, GeoMetadata必要
 ```
 
 ### コンストラクタ引数
@@ -1261,7 +1261,7 @@ event MetadataUpdate(uint256 _tokenId);
 // Fumi.sol
 constructor(address _datetimeAddress)
 
-// GeoRelationalNFT.sol
+// GeoReferableNFT.sol
 constructor(
     address _fumi,
     address _geoMath,
@@ -1288,9 +1288,9 @@ const geoMetadata = await GeoMetadata.deploy();
 const Fumi = await ethers.getContractFactory('Fumi');
 const fumi = await Fumi.deploy(dateTime.address);
 
-// 5. GeoRelationalNFT
-const GeoRelationalNFT = await ethers.getContractFactory('GeoRelationalNFT');
-const geoNFT = await GeoRelationalNFT.deploy(fumi.address, geoMath.address, geoMetadata.address);
+// 5. GeoReferableNFT
+const GeoReferableNFT = await ethers.getContractFactory('GeoReferableNFT');
+const geoNFT = await GeoReferableNFT.deploy(fumi.address, geoMath.address, geoMetadata.address);
 ```
 
 ---
@@ -1309,7 +1309,7 @@ const geoNFT = await GeoRelationalNFT.deploy(fumi.address, geoMath.address, geoM
 
 MIT License
 
-Copyright (c) 2024 GeoRelationalNFT Team
+Copyright (c) 2024 GeoReferableNFT Team
 
 ---
 

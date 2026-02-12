@@ -300,7 +300,7 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=あなたのProject ID
 NEXT_PUBLIC_CONTRACT_ADDRESS=0xCF3C96a9a7080c5d8bBA706250681A9d27573847
 
 # Subgraph URL（V3.7.0）
-NEXT_PUBLIC_AMOY_SUBGRAPH_URL=https://api.studio.thegraph.com/query/112389/geo-relational-nft-amoy/v3.7.0
+NEXT_PUBLIC_AMOY_SUBGRAPH_URL=https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.7.0
 
 # ネットワーク設定
 NEXT_PUBLIC_CHAIN_ID=80002  # Polygon Amoy Testnet

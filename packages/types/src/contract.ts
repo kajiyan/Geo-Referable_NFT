@@ -1,8 +1,8 @@
 /**
- * Contract Types for GeoRelationalNFT (NOROSI)
+ * Contract Types for GeoReferableNFT (NOROSI)
  *
  * These types represent the on-chain data structures and interfaces
- * for interacting with the GeoRelationalNFT smart contract.
+ * for interacting with the GeoReferableNFT smart contract.
  */
 
 import type { Address, Hex } from 'viem';

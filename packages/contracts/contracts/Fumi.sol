@@ -14,7 +14,7 @@ interface IFont {
 
 /**
  * @title Fumi (煙 = smoke)
- * @notice Utility contract for generating on-chain SVG for Geo-relational NFT tokens.
+ * @notice Utility contract for generating on-chain SVG for Geo-Referable NFT tokens.
  * @dev Gas-optimized implementation with the following techniques:
  * - Direct writing to large bytes buffer (avoiding repeated abi.encodePacked calls)
  * - Sine value Look-Up Table (LUT) packed in bytes with linear interpolation

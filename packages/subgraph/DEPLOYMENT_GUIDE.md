@@ -1,6 +1,6 @@
 # Subgraph Deployment Guide
 
-This guide provides step-by-step instructions for deploying the GeoRelationalNFT subgraph to The Graph's decentralized network.
+This guide provides step-by-step instructions for deploying the GeoReferableNFT subgraph to The Graph's decentralized network.
 
 ## Table of Contents
 
@@ -96,9 +96,9 @@ For those who want to understand each step or need to debug issues.
 1. Go to [thegraph.com/studio](https://thegraph.com/studio/)
 2. Click **"Create a Subgraph"**
 3. Enter subgraph details:
-   - **Name**: `geo-relational-nft-amoy` (or your preferred name)
-   - **Subtitle**: "GeoRelationalNFT on Polygon Amoy"
-   - **Description**: "The Graph indexer for GeoRelationalNFT contract"
+   - **Name**: `geo-referable-nft-amoy` (or your preferred name)
+   - **Subtitle**: "GeoReferableNFT on Polygon Amoy"
+   - **Description**: "The Graph indexer for GeoReferableNFT contract"
 4. Click **"Create Subgraph"**
 5. Copy the **Deploy Key** from the deploy tab
 
@@ -141,10 +141,10 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: GeoRelationalNFT
+    name: GeoReferableNFT
     network: polygon-amoy # ✓ Verify network name
     source:
-      abi: GeoRelationalNFT
+      abi: GeoReferableNFT
       address: '0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE' # ✓ Verify address
       startBlock: 14000000 # ✓ Update if needed
 ```
@@ -217,7 +217,7 @@ pnpm deploy:amoy
 ```
 ✔ Upload subgraph to IPFS
 Build completed: QmXXXXXXX...
-Deployed to https://thegraph.com/studio/subgraph/geo-relational-nft-amoy
+Deployed to https://thegraph.com/studio/subgraph/geo-referable-nft-amoy
 ```
 
 ### Step 9: Publish to The Graph Network (Optional)
@@ -598,7 +598,7 @@ After deployment, use the query endpoint:
 import { createClient } from '@urql/core';
 
 const client = createClient({
-  url: 'https://api.studio.thegraph.com/query/<YOUR_ID>/geo-relational-nft-amoy/v0.0.1',
+  url: 'https://api.studio.thegraph.com/query/<YOUR_ID>/geo-referable-nft-amoy/v0.0.1',
 });
 
 const query = `
@@ -697,6 +697,6 @@ After successful deployment:
 4. ✅ **Monitor** indexing performance
 5. ✅ **Publish** to The Graph Network (optional)
 
-**Congratulations!** Your GeoRelationalNFT subgraph is now live. 🎉
+**Congratulations!** Your GeoReferableNFT subgraph is now live. 🎉
 
 For usage examples and query patterns, see [README.md](README.md).

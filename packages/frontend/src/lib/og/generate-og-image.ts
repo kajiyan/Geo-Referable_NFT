@@ -4,7 +4,7 @@ import { Resvg } from '@resvg/resvg-js'
 import { stripAnimations } from './strip-animations'
 import { CONTRACT_ADDRESSES, SUPPORTED_CHAINS } from '@/constants'
 
-// Minimal GeoRelationalNFT ABI — tokenURI to get on-chain metadata+SVG
+// Minimal GeoReferableNFT ABI — tokenURI to get on-chain metadata+SVG
 const NOROSI_ABI_MINIMAL = [
   {
     inputs: [{ name: 'tokenId', type: 'uint256' }],
@@ -36,13 +36,13 @@ const client = createPublicClient({
  */
 export async function generateOgImage(tokenId: string): Promise<Buffer> {
   const addresses = CONTRACT_ADDRESSES[SUPPORTED_CHAINS.POLYGON_AMOY]
-  if (!addresses?.GEO_RELATIONAL_NFT) {
+  if (!addresses?.GEO_REFERABLE_NFT) {
     throw new Error('Contract address not configured')
   }
 
   // Call tokenURI to get on-chain metadata JSON
   const tokenUriResult = await client.readContract({
-    address: addresses.GEO_RELATIONAL_NFT,
+    address: addresses.GEO_REFERABLE_NFT,
     abi: NOROSI_ABI_MINIMAL,
     functionName: 'tokenURI',
     args: [BigInt(tokenId)],

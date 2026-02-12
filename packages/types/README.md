@@ -1,6 +1,6 @@
 # @norosi/types
 
-Shared TypeScript types for the GeoRelationalNFT (NOROSI) monorepo.
+Shared TypeScript types for the GeoReferableNFT (NOROSI) monorepo.
 
 ## Overview
 
@@ -70,7 +70,7 @@ import { degreesToContract, validateCoordinate } from '@norosi/types/utils';
 
 ### 1. Contract Types (`contract.ts`)
 
-Types for interacting with the GeoRelationalNFT smart contract.
+Types for interacting with the GeoReferableNFT smart contract.
 
 #### Core Types
 

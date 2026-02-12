@@ -6,9 +6,9 @@ import "@openzeppelin/contracts/utils/Base64.sol";
 import "../interfaces/IGeoMetadata.sol";
 
 /// @title GeoMetadata
-/// @notice Enhanced metadata formatting for GeoRelationalNFT with gas optimizations and richer content
+/// @notice Enhanced metadata formatting for GeoReferableNFT with gas optimizations and richer content
 /// @dev Provides coordinate formatting, attribute generation, and rarity calculation
-/// @author GeoRelationalNFT Team
+/// @author GeoReferableNFT Team
 contract GeoMetadata is IGeoMetadata {
     // ============================================
     // CONSTANTS: Precision & Conversion

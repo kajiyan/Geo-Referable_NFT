@@ -1,5 +1,5 @@
 /**
- * Utility Types and Helper Functions for GeoRelationalNFT (NOROSI)
+ * Utility Types and Helper Functions for GeoReferableNFT (NOROSI)
  *
  * Type-safe utility functions for common operations.
  */

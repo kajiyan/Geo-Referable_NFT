@@ -1,6 +1,6 @@
-# 🚀 GeoRelationalNFT (NOROSI) デプロイメントガイド
+# 🚀 GeoReferableNFT (NOROSI) デプロイメントガイド
 
-このガイドでは、GeoRelationalNFT (NOROSI) コントラクトをテストネットにデプロイする手順を詳しく説明します。
+このガイドでは、GeoReferableNFT (NOROSI) コントラクトをテストネットにデプロイする手順を詳しく説明します。
 
 ## 📋 目次
 
@@ -42,8 +42,8 @@
 
 ```bash
 # リポジトリをクローン
-git clone https://github.com/your-repo/Geo-relational_NFT.git
-cd Geo-relational_NFT
+git clone https://github.com/your-repo/Geo-Referable_NFT.git
+cd Geo-Referable_NFT
 
 # Voltaをインストール（推奨）
 curl https://get.volta.sh | bash
@@ -239,7 +239,7 @@ cast balance $(cast wallet address $PRIVATE_KEY) --rpc-url $SEPOLIA_RPC_URL
 // 2. GeoMath contract
 // 3. GeoMetadata contract
 // 4. Fumi contract (DateTimeアドレスを引数に)
-// 5. GeoRelationalNFT (Fumi, GeoMath, GeoMetadataアドレスを引数に)
+// 5. GeoReferableNFT (Fumi, GeoMath, GeoMetadataアドレスを引数に)
 ```
 
 ⚠️ **注意:** Sepoliaのレガシー版は GeoMath/GeoMetadata を含みません。
@@ -272,7 +272,7 @@ npx hardhat run scripts/deploy.ts --network sepolia
 
 ```
 ======================================================================
-🚀 GEORELATIONAL NFT DEPLOYMENT SCRIPT
+🚀 GEOREFERABLE NFT DEPLOYMENT SCRIPT
 ======================================================================
 
 📋 Deployment Configuration:
@@ -295,8 +295,8 @@ npx hardhat run scripts/deploy.ts --network sepolia
 🌊 Deploying Fumi Contract...
    ✅ Fumi: 0x53461c88BBD4135AEc90fb37AC7c4F6bf41b9b20
 
-🌍 Deploying GeoRelationalNFT...
-   ✅ GeoRelationalNFT: 0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE
+🌍 Deploying GeoReferableNFT...
+   ✅ GeoReferableNFT: 0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE
 
 ======================================================================
 ✅ DEPLOYMENT COMPLETE!
@@ -307,7 +307,7 @@ npx hardhat run scripts/deploy.ts --network sepolia
    GeoMath:            0x5FAB72FD61A115E15703AB6963107F1636434Af3
    GeoMetadata:        0x31f155CB241127E50a2DB94Fc2502a59d3c28344
    Fumi:               0x53461c88BBD4135AEc90fb37AC7c4F6bf41b9b20
-   GeoRelationalNFT:   0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE
+   GeoReferableNFT:   0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE
 
 💾 Saved to: deployments/deployment-amoy-latest.json
 ```
@@ -335,7 +335,7 @@ packages/contracts/deployments/deployment-sepolia-latest.json
     "GeoMath": "0x...",
     "GeoMetadata": "0x...",
     "Fumi": "0x...",
-    "GeoRelationalNFT": "0x..."
+    "GeoReferableNFT": "0x..."
   }
 }
 ```
@@ -392,12 +392,12 @@ export FUMI_ADDRESS=0x53461c88BBD4135AEc90fb37AC7c4F6bf41b9b20
 npx hardhat verify --network amoy $FUMI_ADDRESS $DATETIME_ADDRESS
 ```
 
-#### ステップ5: GeoRelationalNFTの検証
+#### ステップ5: GeoReferableNFTの検証
 
 ```bash
 export GEONFT_ADDRESS=0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE
 
-# GeoRelationalNFTを検証（Fumi, GeoMath, GeoMetadataアドレスをコンストラクタ引数として渡す）
+# GeoReferableNFTを検証（Fumi, GeoMath, GeoMetadataアドレスをコンストラクタ引数として渡す）
 npx hardhat verify --network amoy $GEONFT_ADDRESS \
   $FUMI_ADDRESS \
   $GEOMATH_ADDRESS \
@@ -407,7 +407,7 @@ npx hardhat verify --network amoy $GEONFT_ADDRESS \
 **期待される出力:**
 
 ```
-Successfully verified contract GeoRelationalNFT on the block explorer.
+Successfully verified contract GeoReferableNFT on the block explorer.
 https://amoy.polygonscan.com/address/0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE#code
 ```
 
@@ -424,7 +424,7 @@ npx hardhat verify --network sepolia \
   0xc97efD70f1B0563FC4f09f64001639d6d1CE10fd \
   0x896D253F8d5cc6E6A6f968F2E96cC1961Fe81119
 
-# GeoRelationalNFT (Fumi, DateTimeアドレスのみ)
+# GeoReferableNFT (Fumi, DateTimeアドレスのみ)
 npx hardhat verify --network sepolia \
   0x7b05Ae982330Ab9C3dBbaE47ec1AE8e7a32458b5 \
   0xc97efD70f1B0563FC4f09f64001639d6d1CE10fd \
@@ -443,10 +443,10 @@ npx hardhat verify --network sepolia \
 
 Explorer上で「Read Contract」タブを開き、以下を確認：
 
-**GeoRelationalNFT:**
+**GeoReferableNFT:**
 
 ```
-1. name() → "GeoRelationalNFT"
+1. name() → "GeoReferableNFT"
 2. symbol() → "NOROSI"
 3. owner() → あなたのウォレットアドレス
 4. totalSupply() → 0
@@ -462,8 +462,8 @@ npx hardhat console --network amoy  # または --network sepolia
 
 ```javascript
 // コントラクトインスタンスを取得
-const GeoRelationalNFT = await ethers.getContractFactory('GeoRelationalNFT');
-const contract = await GeoRelationalNFT.attach('0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE'); // Amoyアドレス
+const GeoReferableNFT = await ethers.getContractFactory('GeoReferableNFT');
+const contract = await GeoReferableNFT.attach('0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE'); // Amoyアドレス
 
 // デプロイヤーアドレスを取得
 const [deployer] = await ethers.getSigners();
@@ -504,7 +504,7 @@ console.log('Metadata:', JSON.stringify(json, null, 2));
 
 ```json
 {
-  "name": "GeoRelationalNFT #0",
+  "name": "GeoReferableNFT #0",
   "description": "Geographic NFT with on-chain SVG - norosi.xyz",
   "image": "data:image/svg+xml;base64,...",
   "attributes": [
@@ -720,7 +720,7 @@ The GraphでSubgraphをデプロイしてイベントをインデックス化：
 ```bash
 graph init --from-contract 0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE \
   --network polygon-amoy \
-  --contract-name GeoRelationalNFT
+  --contract-name GeoReferableNFT
 ```
 
 ### 3. メインネットへのデプロイ

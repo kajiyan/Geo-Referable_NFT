@@ -62,7 +62,7 @@ async function main() {
   // Fixed parameters for consistent comparison
   const baseTokenId = 123456789n;
   const timestamp = Math.floor(Date.now() / 1000);
-  const message = "NOROSI Geo-relational NFT";
+  const message = "NOROSI Geo-Referable NFT";
   const totalDistance = 1500000; // 15.0 km
   const generation = 5;
   const refCountValue = 50; // Elite tier (10 waves)

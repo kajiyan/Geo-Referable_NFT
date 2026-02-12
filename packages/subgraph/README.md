@@ -1,10 +1,10 @@
-# GeoRelationalNFT Subgraph
+# GeoReferableNFT Subgraph
 
-The Graph Protocol indexer for GeoRelationalNFT (NOROSI) contract.
+The Graph Protocol indexer for GeoReferableNFT (NOROSI) contract.
 
 ## Overview
 
-This subgraph indexes on-chain data from the GeoRelationalNFT contract (ERC-721 + ERC-5521) and makes it queryable via GraphQL API.
+This subgraph indexes on-chain data from the GeoReferableNFT contract (ERC-721 + ERC-5521) and makes it queryable via GraphQL API.
 
 ### Key Features
 
@@ -20,7 +20,7 @@ This subgraph indexes on-chain data from the GeoRelationalNFT contract (ERC-721 
 ```
 packages/subgraph/
 ├── abis/
-│   └── GeoRelationalNFT.json  # Contract ABI
+│   └── GeoReferableNFT.json  # Contract ABI
 ├── src/
 │   └── mapping.ts             # Event handlers
 ├── tests/                      # Matchstick tests (optional)
@@ -39,7 +39,7 @@ packages/subgraph/
 From the monorepo root:
 
 ```bash
-pnpm install --filter @geo-relational-nft/subgraph
+pnpm install --filter @geo-referable-nft/subgraph
 ```
 
 Or from this directory:
@@ -75,7 +75,7 @@ source:
 - **Amoy (Polygon zkEVM Testnet)**:
   - **Contract**: `0xCF3C96a9a7080c5d8bBA706250681A9d27573847` (V3.7.0)
   - **Subgraph**: V3.7.0
-  - **Query Endpoint**: `https://api.studio.thegraph.com/query/112389/geo-relational-nft-amoy/v3.7.0`
+  - **Query Endpoint**: `https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.7.0`
   - **Start Block**: `33148577`
 - **Polygon Mainnet**: Not yet deployed (update `subgraph.polygon.yaml` after deployment)
 
@@ -457,7 +457,7 @@ query RecentMintsInH3Area($h3Areas: [String!]!) {
 
 ## Architecture Changes
 
-This subgraph implements the latest GeoRelationalNFT contract with the following key changes:
+This subgraph implements the latest GeoReferableNFT contract with the following key changes:
 
 ### 1. Event Name Change
 
@@ -549,7 +549,7 @@ pnpm copy-abi
 Or manually:
 
 ```bash
-cp ../contracts/artifacts/contracts/GeoRelationalNFT.sol/GeoRelationalNFT.json abis/
+cp ../contracts/artifacts/contracts/GeoReferableNFT.sol/GeoReferableNFT.json abis/
 ```
 
 ## Testing

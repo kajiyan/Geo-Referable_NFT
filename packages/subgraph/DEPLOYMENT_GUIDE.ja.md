@@ -1,6 +1,6 @@
 # Subgraph デプロイガイド
 
-このガイドでは、GeoRelationalNFT サブグラフを The Graph の分散型ネットワークにデプロイする手順を段階的に説明します。
+このガイドでは、GeoReferableNFT サブグラフを The Graph の分散型ネットワークにデプロイする手順を段階的に説明します。
 
 ## 目次
 
@@ -96,9 +96,9 @@ pnpm deploy:amoy:full
 1. [thegraph.com/studio](https://thegraph.com/studio/) にアクセス
 2. **「Create a Subgraph」**をクリック
 3. サブグラフの詳細を入力：
-   - **Name**: `geo-relational-nft-amoy`（または任意の名前）
-   - **Subtitle**: 「GeoRelationalNFT on Polygon Amoy」
-   - **Description**: 「The Graph indexer for GeoRelationalNFT contract」
+   - **Name**: `geo-referable-nft-amoy`（または任意の名前）
+   - **Subtitle**: 「GeoReferableNFT on Polygon Amoy」
+   - **Description**: 「The Graph indexer for GeoReferableNFT contract」
 4. **「Create Subgraph」**をクリック
 5. Deploy タブから**デプロイキー**をコピー
 
@@ -143,10 +143,10 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: GeoRelationalNFT
+    name: GeoReferableNFT
     network: polygon-amoy # ✓ ネットワーク名を確認
     source:
-      abi: GeoRelationalNFT
+      abi: GeoReferableNFT
       address: '0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE' # ✓ アドレスを確認
       startBlock: 14000000 # ✓ 必要に応じて更新
 ```
@@ -227,7 +227,7 @@ pnpm deploy:amoy
 ```
 ✔ Upload subgraph to IPFS
 Build completed: QmXXXXXXX...
-Deployed to https://thegraph.com/studio/subgraph/geo-relational-nft-amoy
+Deployed to https://thegraph.com/studio/subgraph/geo-referable-nft-amoy
 ```
 
 ### ステップ 9: The Graph Network に公開（オプション）
@@ -608,7 +608,7 @@ pnpm deploy:amoy:full
 import { createClient } from '@urql/core';
 
 const client = createClient({
-  url: 'https://api.studio.thegraph.com/query/<YOUR_ID>/geo-relational-nft-amoy/v0.0.1',
+  url: 'https://api.studio.thegraph.com/query/<YOUR_ID>/geo-referable-nft-amoy/v0.0.1',
 });
 
 const query = `
@@ -707,6 +707,6 @@ GRAPH_LOG=debug pnpm deploy:amoy
 4. ✅ インデックスパフォーマンスを**監視**
 5. ✅ The Graph Network に**公開**（オプション）
 
-**おめでとうございます！** GeoRelationalNFT サブグラフが稼働しています。🎉
+**おめでとうございます！** GeoReferableNFT サブグラフが稼働しています。🎉
 
 使用例とクエリパターンについては、[README.md](README.md) を参照してください。

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
-import { GeoRelationalNFT } from '../typechain-types';
+import { GeoReferableNFT } from '../typechain-types';
 import { SignerWithAddress } from '@nomicfoundation/hardhat-ethers/signers';
 import { getH3FromMillionths } from './helpers/h3Helper';
 // Helper function to generate colorIndex from coordinates (0-13)
@@ -21,8 +21,8 @@ function getElevation(lat?: bigint, lon?: bigint): bigint {
   return 1000000n; // Default: 100.0000m
 }
 
-describe('GeoRelationalNFT', function () {
-  let geoNFT: GeoRelationalNFT;
+describe('GeoReferableNFT', function () {
+  let geoNFT: GeoReferableNFT;
   let fumi: any;
   let dateTime: any;
   let geoMath: any;
@@ -68,9 +68,9 @@ describe('GeoRelationalNFT', function () {
     );
     await fumi.waitForDeployment();
 
-    // Deploy GeoRelationalNFT with Fumi, GeoMath, and GeoMetadata addresses
-    const GeoRelationalNFTFactory = await ethers.getContractFactory('GeoRelationalNFT');
-    geoNFT = await GeoRelationalNFTFactory.deploy(
+    // Deploy GeoReferableNFT with Fumi, GeoMath, and GeoMetadata addresses
+    const GeoReferableNFTFactory = await ethers.getContractFactory('GeoReferableNFT');
+    geoNFT = await GeoReferableNFTFactory.deploy(
       await fumi.getAddress(),
       await geoMath.getAddress(),
       await geoMetadata.getAddress(),
@@ -3664,7 +3664,7 @@ describe('GeoRelationalNFT', function () {
         const json = JSON.parse(Buffer.from(uri.split(',')[1], 'base64').toString());
 
         // Compact format has no tagline for size optimization
-        expect(json.description).to.not.include('GeoRelational network');
+        expect(json.description).to.not.include('GeoReferable network');
         expect(json.description).to.match(/^\d+\.\d{4}[NS],\d+\.\d{4}[EW] -?\d+m/);
       });
     });
@@ -3745,9 +3745,9 @@ describe('GeoRelationalNFT', function () {
       );
       await fumi.waitForDeployment();
 
-      // Deploy GeoRelationalNFT
-      const GeoRelationalNFT = await ethers.getContractFactory('GeoRelationalNFT');
-      geoNFT = await GeoRelationalNFT.deploy(
+      // Deploy GeoReferableNFT
+      const GeoReferableNFT = await ethers.getContractFactory('GeoReferableNFT');
+      geoNFT = await GeoReferableNFT.deploy(
         await fumi.getAddress(),
         await geoMath.getAddress(),
         await geoMetadata.getAddress(),
@@ -3934,9 +3934,9 @@ describe('GeoRelationalNFT', function () {
       });
 
       it('Should NOT emit MetadataUpdate for external contract references', async function () {
-        // Deploy a second GeoRelationalNFT contract to act as external
-        const GeoRelationalNFT = await ethers.getContractFactory('GeoRelationalNFT');
-        const externalNFT = await GeoRelationalNFT.deploy(
+        // Deploy a second GeoReferableNFT contract to act as external
+        const GeoReferableNFT = await ethers.getContractFactory('GeoReferableNFT');
+        const externalNFT = await GeoReferableNFT.deploy(
           await fumi.getAddress(),
           await geoMath.getAddress(),
           await geoMetadata.getAddress(),
@@ -4217,8 +4217,8 @@ describe('GeoRelationalNFT', function () {
       });
 
       it('Should work with valid external ERC721 contract', async function () {
-        // Deploy a second GeoRelationalNFT instance to use as external reference
-        const GeoNFTFactory = await ethers.getContractFactory('GeoRelationalNFT');
+        // Deploy a second GeoReferableNFT instance to use as external reference
+        const GeoNFTFactory = await ethers.getContractFactory('GeoReferableNFT');
         const externalNFT = await GeoNFTFactory.deploy(
           await fumi.getAddress(),
           await geoMath.getAddress(),

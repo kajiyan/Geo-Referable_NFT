@@ -1,7 +1,7 @@
 {
   "name": "@norosi/types",
   "version": "0.1.0",
-  "description": "Shared TypeScript types for GeoRelationalNFT (NOROSI) monorepo",
+  "description": "Shared TypeScript types for GeoReferableNFT (NOROSI) monorepo",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

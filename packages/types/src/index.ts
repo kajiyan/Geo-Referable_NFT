@@ -1,5 +1,5 @@
 /**
- * @norosi/types - Shared TypeScript types for GeoRelationalNFT (NOROSI) monorepo
+ * @norosi/types - Shared TypeScript types for GeoReferableNFT (NOROSI) monorepo
  *
  * This package provides type definitions for:
  * - Smart contract interactions

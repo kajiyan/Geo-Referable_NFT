@@ -55,8 +55,8 @@ const CollectionItemComponent: React.FC<CollectionItemProps> = ({
 
   // Generate navigation URLs (OpenSea compliant format)
   const chainName = CHAIN_NAMES[chainId] || 'amoy';
-  const contractAddress = CONTRACT_ADDRESSES[chainId as keyof typeof CONTRACT_ADDRESSES]?.GEO_RELATIONAL_NFT
-    || CONTRACT_ADDRESSES[SUPPORTED_CHAINS.POLYGON_AMOY].GEO_RELATIONAL_NFT;
+  const contractAddress = CONTRACT_ADDRESSES[chainId as keyof typeof CONTRACT_ADDRESSES]?.GEO_REFERABLE_NFT
+    || CONTRACT_ADDRESSES[SUPPORTED_CHAINS.POLYGON_AMOY].GEO_REFERABLE_NFT;
   const itemUrl = `/item/${chainName}/${contractAddress}/${token.tokenId}`;
   const historyUrl = `/history/${chainName}/${contractAddress}/${token.treeId}#${token.treeIndex}`;
 

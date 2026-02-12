@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 
 /**
- * Playwright Configuration for GeoRelationalNFT E2E Tests
+ * Playwright Configuration for GeoReferableNFT E2E Tests
  *
  * @see https://playwright.dev/docs/test-configuration
  */

@@ -15,7 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const CONTRACTS_PATH = resolve(__dirname, '../../contracts/artifacts/contracts');
-const TARGET_CONTRACT = 'GeoRelationalNFT.sol/GeoRelationalNFT.json';
+const TARGET_CONTRACT = 'GeoReferableNFT.sol/GeoReferableNFT.json';
 
 function main() {
   console.log('🔧 Generating contract types...\n');

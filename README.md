@@ -1,4 +1,4 @@
-# GeoRelationalNFT (NOROSI)
+# GeoReferableNFT (NOROSI)
 
 A cutting-edge NFT system combining geographic location, H3 spatial indexing, and advanced on-chain features with a modular pnpm monorepo architecture.
 
@@ -39,11 +39,11 @@ All contracts deployed on Amoy (Chain ID: 80002):
 - **GeoMetadata**: [`0x963F740813e35Fa5573A0838F4aB18F21e20324F`](https://amoy.polygonscan.com/address/0x963F740813e35Fa5573A0838F4aB18F21e20324F)
 - **NOROSIFont**: [`0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA`](https://amoy.polygonscan.com/address/0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA)
 - **Fumi**: [`0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9`](https://amoy.polygonscan.com/address/0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9)
-- **GeoRelationalNFT**: [`0xCF3C96a9a7080c5d8bBA706250681A9d27573847`](https://amoy.polygonscan.com/address/0xCF3C96a9a7080c5d8bBA706250681A9d27573847)
+- **GeoReferableNFT**: [`0xCF3C96a9a7080c5d8bBA706250681A9d27573847`](https://amoy.polygonscan.com/address/0xCF3C96a9a7080c5d8bBA706250681A9d27573847)
 
 **Network**: Amoy (Polygon zkEVM Testnet) | **Deployed**: 2026-02-01 | **Contract Version**: V3.7.0
 
-**Subgraph**: [V3.7.0](https://api.studio.thegraph.com/query/112389/geo-relational-nft-amoy/v3.7.0)
+**Subgraph**: [V3.7.0](https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.7.0)
 
 See [packages/contracts/DEPLOYMENT_GUIDE.md](packages/contracts/DEPLOYMENT_GUIDE.md) for detailed deployment information.
 
@@ -114,11 +114,11 @@ import { ethers } from 'hardhat';
 
 // Get contract instance (Amoy testnet)
 const contract = await ethers.getContractAt(
-  'GeoRelationalNFT',
+  'GeoReferableNFT',
   '0xCF3C96a9a7080c5d8bBA706250681A9d27573847',
 );
 
-// Mint a GeoRelationalNFT with 4-level H3 indices
+// Mint a GeoReferableNFT with 4-level H3 indices
 const tx = await contract.mint(
   deployerAddress, // to
   35678900, // latitude (35.6789° × 1,000,000)
@@ -154,7 +154,7 @@ More examples in [packages/contracts/test/](packages/contracts/test/) directory.
 ### Contract Hierarchy
 
 ```
-GeoRelationalNFT
+GeoReferableNFT
   ├─ ERC721 (base NFT)
   ├─ ERC721Enumerable (token enumeration)
   ├─ IERC5521 (referable NFT)
@@ -175,7 +175,7 @@ GeoRelationalNFT
 
 ### Contract Specifications
 
-- **GeoRelationalNFT**: ~23 KB (under 24KB limit ✅)
+- **GeoReferableNFT**: ~23 KB (under 24KB limit ✅)
 - **GeoMath**: ~2 KB (distance calculations with Taylor series approximation)
 - **GeoMetadata**: ~8 KB (coordinate formatting, attributes, rarity calculation)
 - **Fumi (SVG)**: ~12 KB with 2703-byte sine LUT

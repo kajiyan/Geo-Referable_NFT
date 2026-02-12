@@ -1,6 +1,6 @@
 # Scripts Directory
 
-This directory contains utility scripts for the GeoRelationalNFT project.
+This directory contains utility scripts for the GeoReferableNFT project.
 
 ## Available Scripts
 

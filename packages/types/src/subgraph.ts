@@ -1,5 +1,5 @@
 /**
- * Subgraph Types for GeoRelationalNFT (NOROSI)
+ * Subgraph Types for GeoReferableNFT (NOROSI)
  *
  * These types represent the indexed blockchain data from The Graph.
  * They correspond to the GraphQL schema in packages/subgraph/schema.graphql

@@ -5,10 +5,10 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: GeoRelationalNFT
+    name: GeoReferableNFT
     network: matic  # Polygon mainnet
     source:
-      abi: GeoRelationalNFT
+      abi: GeoReferableNFT
       # ⚠️ UPDATE REQUIRED: Replace with actual mainnet contract address after deployment
       address: "0x0000000000000000000000000000000000000000"
       # ⚠️ UPDATE REQUIRED: Replace with actual deployment block number
@@ -31,8 +31,8 @@ dataSources:
         - MetadataUpdate
         - GlobalStats
       abis:
-        - name: GeoRelationalNFT
-          file: ./abis/GeoRelationalNFT.json
+        - name: GeoReferableNFT
+          file: ./abis/GeoReferableNFT.json
       eventHandlers:
         - event: FumiMinted(indexed uint256,indexed address,indexed address,string,string,string,string,string)
           handler: handleFumiMinted

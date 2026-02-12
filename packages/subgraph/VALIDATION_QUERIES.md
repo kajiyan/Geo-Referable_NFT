@@ -1,6 +1,6 @@
 # Subgraph Validation Queries
 
-This document contains GraphQL queries for validating the subgraph integration with GeoRelationalNFT v2.
+This document contains GraphQL queries for validating the subgraph integration with GeoReferableNFT v2.
 
 ## Status: ✅ All queries updated to contract v2 schema
 
@@ -674,7 +674,7 @@ echo "\n✅ Validation complete"
 
 ## Notes
 
-- All queries are compatible with GeoRelationalNFT contract v2
+- All queries are compatible with GeoReferableNFT contract v2
 - Replace placeholder H3 values with actual values from your deployment
 - For production, add proper error handling and pagination
 - Monitor query performance and optimize as needed
@@ -683,4 +683,4 @@ echo "\n✅ Validation complete"
 
 **Document Version**: 1.0
 **Last Updated**: 2025-10-22
-**Contract Version**: GeoRelationalNFT v2 (Amoy: 0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE)
+**Contract Version**: GeoReferableNFT v2 (Amoy: 0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE)

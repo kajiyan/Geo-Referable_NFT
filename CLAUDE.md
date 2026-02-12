@@ -1,4 +1,4 @@
-# NOROSI (GeoRelationalNFT)
+# NOROSI (GeoReferableNFT)
 
 pnpm monorepo for geo-location based NFTs with H3 indexing, ERC-5521 references, and on-chain SVG generation.
 
@@ -15,7 +15,7 @@ pnpm monorepo for geo-location based NFTs with H3 indexing, ERC-5521 references,
 
 ```text
 packages/
-├── contracts/     # Hardhat smart contracts (GeoRelationalNFT.sol, Fumi.sol, GeoMath.sol, GeoMetadata.sol)
+├── contracts/     # Hardhat smart contracts (GeoReferableNFT.sol, Fumi.sol, GeoMath.sol, GeoMetadata.sol)
 ├── types/         # Shared TypeScript types (@norosi/types)
 ├── subgraph/      # The Graph indexer
 └── frontend/      # Next.js web app (HTTPS required for WalletConnect)
@@ -59,8 +59,8 @@ All mint functions require 4 H3 parameters: `h3r6`, `h3r8`, `h3r10`, `h3r12`
 
 ## Deployments (Amoy - V3.7.0)
 
-- **GeoRelationalNFT**: `0xCF3C96a9a7080c5d8bBA706250681A9d27573847`
-- **Subgraph**: `https://api.studio.thegraph.com/query/112389/geo-relational-nft-amoy/v3.7.0`
+- **GeoReferableNFT**: `0xCF3C96a9a7080c5d8bBA706250681A9d27573847`
+- **Subgraph**: `https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.7.0`
 
 Full addresses: [packages/contracts/deployments/](packages/contracts/deployments/)
 
@@ -68,7 +68,7 @@ Full addresses: [packages/contracts/deployments/](packages/contracts/deployments
 
 | Task | Document |
 |------|----------|
-| Contract architecture | [packages/contracts/contracts/](packages/contracts/contracts/) - read GeoRelationalNFT.sol |
+| Contract architecture | [packages/contracts/contracts/](packages/contracts/contracts/) - read GeoReferableNFT.sol |
 | Deployment workflow | [packages/contracts/DEPLOYMENT_GUIDE.md](packages/contracts/DEPLOYMENT_GUIDE.md) |
 | Frontend HTTPS setup | Run `cd packages/frontend && pnpm generate:certs` |
 | Subgraph update | [packages/subgraph/README.md](packages/subgraph/README.md) |

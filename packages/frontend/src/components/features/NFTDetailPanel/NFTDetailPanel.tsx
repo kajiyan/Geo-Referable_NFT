@@ -147,8 +147,8 @@ export function NFTDetailPanel({
 
   // Generate navigation URLs (OpenSea compliant format)
   const chainName = CHAIN_NAMES[chainId] || 'amoy'
-  const contractAddress = CONTRACT_ADDRESSES[chainId as keyof typeof CONTRACT_ADDRESSES]?.GEO_RELATIONAL_NFT
-    || CONTRACT_ADDRESSES[SUPPORTED_CHAINS.POLYGON_AMOY].GEO_RELATIONAL_NFT
+  const contractAddress = CONTRACT_ADDRESSES[chainId as keyof typeof CONTRACT_ADDRESSES]?.GEO_REFERABLE_NFT
+    || CONTRACT_ADDRESSES[SUPPORTED_CHAINS.POLYGON_AMOY].GEO_REFERABLE_NFT
   const itemUrl = `/item/${chainName}/${contractAddress}/${displayToken.tokenId}`
   const historyUrl = `/history/${chainName}/${contractAddress}/${displayToken.treeId}#${displayToken.treeIndex}`
 

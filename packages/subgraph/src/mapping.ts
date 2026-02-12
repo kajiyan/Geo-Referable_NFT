@@ -1,5 +1,5 @@
 /**
- * GeoRelationalNFT Subgraph V3.1 - Mapping Handlers (FIXED)
+ * GeoReferableNFT Subgraph V3.1 - Mapping Handlers (FIXED)
  * 
  * Optimized for MAP_VISUALIZATION requirements:
  * - H3Cell entity with efficient joins
@@ -22,8 +22,8 @@ import {
   ReferenceCreated,
   MetadataUpdate as MetadataUpdateEvent,
   Transfer as TransferEvent,
-  GeoRelationalNFT,
-} from '../generated/GeoRelationalNFT/GeoRelationalNFT';
+  GeoReferableNFT,
+} from '../generated/GeoReferableNFT/GeoReferableNFT';
 import {
   Token,
   User,
@@ -246,7 +246,7 @@ export function handleFumiMinted(event: FumiMinted): void {
     token.quadrant = decoded.quadrant;
     
     // Get additional data from contract (elevation, colorIndex, tree, generation, treeIndex)
-    const contract = GeoRelationalNFT.bind(event.address);
+    const contract = GeoReferableNFT.bind(event.address);
     const tokenData = contract.try_decodeTokenId(tokenId);
     
     if (!tokenData.reverted) {

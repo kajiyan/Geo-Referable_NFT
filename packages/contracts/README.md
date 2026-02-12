@@ -1,6 +1,6 @@
 # NOROSI Smart Contracts
 
-地理座標ベースのNFT（GeoRelationalNFT）のスマートコントラクト実装です。
+地理座標ベースのNFT（GeoReferableNFT）のスマートコントラクト実装です。
 
 ## 📋 目次
 
@@ -43,7 +43,7 @@
 ```mermaid
 graph TD
     %% Main Contract
-    GeoNFT[GeoRelationalNFT.sol]
+    GeoNFT[GeoReferableNFT.sol]
 
     %% SVG Generation
     Fumi[Fumi.sol]
@@ -108,7 +108,7 @@ graph TD
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                     GeoRelationalNFT.sol                        │
+│                     GeoReferableNFT.sol                        │
 │                         (Main NFT)                              │
 │                                                                 │
 │  ・ERC-721 + Enumerable                                         │
@@ -140,7 +140,7 @@ graph TD
 
 ```
 ┌─────────────────────────────────────────┐
-│    Layer 4: Application (Main NFT)      │  ← GeoRelationalNFT.sol
+│    Layer 4: Application (Main NFT)      │  ← GeoReferableNFT.sol
 ├─────────────────────────────────────────┤
 │    Layer 3: Logic (Business Logic)      │  ← Fumi.sol, GeoMath.sol, GeoMetadata.sol
 ├─────────────────────────────────────────┤
@@ -154,7 +154,7 @@ graph TD
 
 ## 主要コントラクト
 
-### 1. GeoRelationalNFT.sol
+### 1. GeoReferableNFT.sol
 
 **役割**: メインのNFTコントラクト
 
@@ -232,7 +232,7 @@ function referredOf(address contractAddr, uint256 tokenId)
 
 **継承チェーン**:
 ```
-GeoRelationalNFT
+GeoReferableNFT
 ├─ ERC721 (OpenZeppelin)
 ├─ ERC721Enumerable (OpenZeppelin)
 ├─ IERC5521 (Custom)
@@ -587,7 +587,7 @@ interface IERC4906 {
    ↓
 5. Fumi.sol             (DateTime, NOROSIFont のアドレスが必要)
    ↓
-6. GeoRelationalNFT.sol (Fumi, GeoMath, GeoMetadata のアドレスが必要)
+6. GeoReferableNFT.sol (Fumi, GeoMath, GeoMetadata のアドレスが必要)
 ```
 
 ### デプロイスクリプト
@@ -613,7 +613,7 @@ npx hardhat run scripts/deploy.ts --network sepolia
 | GeoMetadata | [`0x963F740813e35Fa5573A0838F4aB18F21e20324F`](https://amoy.polygonscan.com/address/0x963F740813e35Fa5573A0838F4aB18F21e20324F) | ✅ |
 | NOROSIFont | [`0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA`](https://amoy.polygonscan.com/address/0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA) | ✅ |
 | Fumi | [`0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9`](https://amoy.polygonscan.com/address/0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9) | ✅ |
-| **GeoRelationalNFT** | [`0xCF3C96a9a7080c5d8bBA706250681A9d27573847`](https://amoy.polygonscan.com/address/0xCF3C96a9a7080c5d8bBA706250681A9d27573847) | ✅ |
+| **GeoReferableNFT** | [`0xCF3C96a9a7080c5d8bBA706250681A9d27573847`](https://amoy.polygonscan.com/address/0xCF3C96a9a7080c5d8bBA706250681A9d27573847) | ✅ |
 
 **バージョン**: V3.7.0
 **テスト結果**: 225 passing tests
@@ -670,7 +670,7 @@ node check-size.js
 ```
 packages/contracts/
 ├── contracts/
-│   ├── GeoRelationalNFT.sol          # メインNFT
+│   ├── GeoReferableNFT.sol          # メインNFT
 │   ├── Fumi.sol                      # SVG生成
 │   ├── interfaces/
 │   │   ├── IFumi.sol

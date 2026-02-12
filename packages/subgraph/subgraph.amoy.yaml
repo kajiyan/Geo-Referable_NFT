@@ -5,10 +5,10 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: GeoRelationalNFT
+    name: GeoReferableNFT
     network: polygon-amoy
     source:
-      abi: GeoRelationalNFT
+      abi: GeoReferableNFT
       address: "0xCF3C96a9a7080c5d8bBA706250681A9d27573847"
       startBlock: 33148577
     mapping:
@@ -29,8 +29,8 @@ dataSources:
         - MetadataUpdate
         - GlobalStats
       abis:
-        - name: GeoRelationalNFT
-          file: ./abis/GeoRelationalNFT.json
+        - name: GeoReferableNFT
+          file: ./abis/GeoReferableNFT.json
       eventHandlers:
         - event: FumiMinted(indexed uint256,indexed address,indexed address,string,string,string,string,string)
           handler: handleFumiMinted

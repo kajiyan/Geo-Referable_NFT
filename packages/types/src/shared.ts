@@ -1,5 +1,5 @@
 /**
- * Shared Types for GeoRelationalNFT (NOROSI)
+ * Shared Types for GeoReferableNFT (NOROSI)
  *
  * Common types used across frontend, client SDK, and other packages.
  * These types bridge contract and subgraph data for application use.

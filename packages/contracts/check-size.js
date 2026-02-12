@@ -1,6 +1,6 @@
 const fs = require('fs');
 const artifact = JSON.parse(
-  fs.readFileSync('./artifacts/contracts/GeoRelationalNFT.sol/GeoRelationalNFT.json'),
+  fs.readFileSync('./artifacts/contracts/GeoReferableNFT.sol/GeoReferableNFT.json'),
 );
 const bytecode = artifact.deployedBytecode;
 const sizeInBytes = (bytecode.length - 2) / 2; // Remove '0x' and divide by 2

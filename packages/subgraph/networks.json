@@ -1,12 +1,12 @@
 {
   "amoy": {
-    "GeoRelationalNFT": {
+    "GeoReferableNFT": {
       "address": "0xCF3C96a9a7080c5d8bBA706250681A9d27573847",
       "startBlock": 33148577
     }
   },
   "polygon": {
-    "GeoRelationalNFT": {
+    "GeoReferableNFT": {
       "address": "0x0000000000000000000000000000000000000000",
       "startBlock": 1000000
     }

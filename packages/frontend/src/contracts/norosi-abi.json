@@ -796,7 +796,7 @@
             "type": "uint256"
           }
         ],
-        "internalType": "struct GeoRelationalNFT.DecodedTokenData",
+        "internalType": "struct GeoReferableNFT.DecodedTokenData",
         "name": "",
         "type": "tuple"
       }
@@ -1026,7 +1026,7 @@
             "type": "string"
           }
         ],
-        "internalType": "struct GeoRelationalNFT.H3Params",
+        "internalType": "struct GeoReferableNFT.H3Params",
         "name": "h3",
         "type": "tuple"
       }
@@ -1102,7 +1102,7 @@
             "type": "string"
           }
         ],
-        "internalType": "struct GeoRelationalNFT.H3Params",
+        "internalType": "struct GeoReferableNFT.H3Params",
         "name": "h3",
         "type": "tuple"
       }
@@ -1502,7 +1502,7 @@
             "type": "string"
           }
         ],
-        "internalType": "struct GeoRelationalNFT.H3Params",
+        "internalType": "struct GeoReferableNFT.H3Params",
         "name": "h3",
         "type": "tuple"
       },
@@ -1588,7 +1588,7 @@
             "type": "string"
           }
         ],
-        "internalType": "struct GeoRelationalNFT.H3Params",
+        "internalType": "struct GeoReferableNFT.H3Params",
         "name": "h3",
         "type": "tuple"
       },

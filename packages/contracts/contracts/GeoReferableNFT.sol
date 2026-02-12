@@ -18,10 +18,10 @@ import "./libraries/SSTORE2.sol";
 import "./libraries/SafeExternalCall.sol";
 import "./interfaces/IGeoMath.sol";
 
-/// @title GeoRelationalNFT: ERC-721 + ERC-5521 Geo-location NFT
+/// @title GeoReferableNFT: ERC-721 + ERC-5521 Geo-location NFT
 /// @notice NFT that encodes geographic coordinates and relationships in tokenId
 /// @dev Uses decimal encoding (quadrant × 10^20 + |lat| × 10^10 + |lon|) and ERC-5521 for referential relationships
-contract GeoRelationalNFT is
+contract GeoReferableNFT is
     ERC721,
     ERC721Enumerable,
     IERC5521,
@@ -65,7 +65,7 @@ contract GeoRelationalNFT is
     // =========================
     // Events
     // =========================
-    /// @notice Emitted when a new GeoRelationalNFT is minted
+    /// @notice Emitted when a new GeoReferableNFT is minted
     /// @param tokenId The minted token ID
     /// @param to The owner of the token
     /// @param from The parent token owner (address(0) for root tokens)
@@ -255,7 +255,7 @@ contract GeoRelationalNFT is
     // =========================
     // Constructor
     // =========================
-    /// @notice Initialize the GeoRelationalNFT contract with required external contracts
+    /// @notice Initialize the GeoReferableNFT contract with required external contracts
     /// @param _fumi Address of the Fumi contract for SVG generation
     /// @param _geoMath Address of the GeoMath contract for distance calculations
     /// @param _geoMetadata Address of the GeoMetadata contract for metadata formatting
@@ -358,7 +358,7 @@ contract GeoRelationalNFT is
     // Minting Functions
     // =========================
 
-    /// @notice Mint a new GeoRelationalNFT (owner only)
+    /// @notice Mint a new GeoReferableNFT (owner only)
     /// @param latitude Latitude scaled by PRECISION
     /// @param longitude Longitude scaled by PRECISION
     /// @param elevation Elevation scaled by ELEVATION_PRECISION
@@ -377,7 +377,7 @@ contract GeoRelationalNFT is
         return _mintInternal(_msgSender(), latitude, longitude, elevation, colorIndex, message, h3);
     }
 
-    /// @notice Mint a new GeoRelationalNFT with references to existing tokens (owner only)
+    /// @notice Mint a new GeoReferableNFT with references to existing tokens (owner only)
     /// @param refAddresses Array of contract addresses for referenced tokens
     /// @param refTokenIds Array of token IDs for each contract address
     /// @param latitude Latitude scaled by PRECISION
@@ -425,7 +425,7 @@ contract GeoRelationalNFT is
         return _nonces[owner];
     }
 
-    /// @notice Mint a new GeoRelationalNFT using a signature (gasless)
+    /// @notice Mint a new GeoReferableNFT using a signature (gasless)
     /// @dev Anyone can submit the transaction, but signature must be from the contract owner
     /// @param to Address to mint the token to (must be the signer)
     /// @param latitude Latitude scaled by PRECISION
@@ -484,7 +484,7 @@ contract GeoRelationalNFT is
         return _mintInternal(to, latitude, longitude, elevation, colorIndex, message, h3);
     }
 
-    /// @notice Mint a new GeoRelationalNFT with chain references using a signature (gasless)
+    /// @notice Mint a new GeoReferableNFT with chain references using a signature (gasless)
     /// @dev Anyone can submit the transaction, but signature must be from the contract owner
     /// @param to Address to mint the token to (must be the signer)
     /// @param refAddresses Array of contract addresses for referenced tokens

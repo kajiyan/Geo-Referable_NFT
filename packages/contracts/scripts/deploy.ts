@@ -13,7 +13,7 @@ const CHAIN_NAMES: Record<string, string> = {
 
 async function main() {
   console.log('\n' + '='.repeat(70));
-  console.log('🚀 GEORELATIONAL NFT DEPLOYMENT SCRIPT');
+  console.log('🚀 GEO-REFERABLE NFT DEPLOYMENT SCRIPT');
   console.log('='.repeat(70));
 
   const [deployer] = await ethers.getSigners();
@@ -73,12 +73,12 @@ async function main() {
   const fumiAddress = await fumi.getAddress();
   console.log('   ✅ Fumi:', fumiAddress);
 
-  // Deploy GeoRelationalNFT
+  // Deploy GeoReferableNFT
   const chainName = CHAIN_NAMES[network.name] || 'amoy';
-  console.log('\n🌍 Deploying GeoRelationalNFT...');
+  console.log('\n🌍 Deploying GeoReferableNFT...');
   console.log('   Chain Name:', chainName);
-  const GeoRelationalNFTFactory = await ethers.getContractFactory('GeoRelationalNFT');
-  const geoNFT = await GeoRelationalNFTFactory.deploy(
+  const GeoReferableNFTFactory = await ethers.getContractFactory('GeoReferableNFT');
+  const geoNFT = await GeoReferableNFTFactory.deploy(
     fumiAddress,
     geoMathAddress,
     geoMetadataAddress,
@@ -86,7 +86,7 @@ async function main() {
   );
   await geoNFT.waitForDeployment();
   const geoNFTAddress = await geoNFT.getAddress();
-  console.log('   ✅ GeoRelationalNFT:', geoNFTAddress);
+  console.log('   ✅ GeoReferableNFT:', geoNFTAddress);
 
   // Save deployment info
   const deploymentInfo = {
@@ -100,7 +100,7 @@ async function main() {
       GeoMetadata: geoMetadataAddress,
       NOROSIFont: norosiFontAddress,
       Fumi: fumiAddress,
-      GeoRelationalNFT: geoNFTAddress,
+      GeoReferableNFT: geoNFTAddress,
     },
   };
 
@@ -113,7 +113,7 @@ async function main() {
   console.log('   GeoMetadata:       ', geoMetadataAddress);
   console.log('   NOROSIFont:        ', norosiFontAddress);
   console.log('   Fumi:              ', fumiAddress);
-  console.log('   GeoRelationalNFT:  ', geoNFTAddress);
+  console.log('   GeoReferableNFT:  ', geoNFTAddress);
 
   const outputDir = path.join(__dirname, '..', 'deployments');
   if (!fs.existsSync(outputDir)) {
