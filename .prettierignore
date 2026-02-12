@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+artifacts
+cache
+coverage
+.pnpm-store
+*.log
+.env
+.env.*
+pnpm-lock.yaml

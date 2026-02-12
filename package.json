@@ -1,0 +1,42 @@
+{
+  "name": "@geo-nft/root",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Geo-relational NFT Project - A monorepo for geo-based NFT smart contracts and client SDK",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "clean": "pnpm -r clean",
+    "typecheck": "pnpm -r typecheck",
+    "contracts:compile": "pnpm --filter @geo-nft/contracts compile",
+    "contracts:test": "pnpm --filter @geo-nft/contracts test",
+    "contracts:deploy": "pnpm --filter @geo-nft/contracts deploy",
+    "client:build": "pnpm --filter @geo-nft/client build",
+    "client:test": "pnpm --filter @geo-nft/client test",
+    "types:build": "pnpm --filter @norosi/types build",
+    "types:generate": "pnpm --filter @norosi/types generate",
+    "types:typecheck": "pnpm --filter @norosi/types typecheck",
+    "frontend:dev": "pnpm --filter @geo-nft/frontend dev",
+    "frontend:build": "pnpm --filter @geo-nft/frontend build",
+    "frontend:start": "pnpm --filter @geo-nft/frontend start",
+    "frontend:test": "pnpm --filter @geo-nft/frontend test",
+    "frontend:lint": "pnpm --filter @geo-nft/frontend lint",
+    "frontend:typecheck": "pnpm --filter @geo-nft/frontend typecheck",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,sol}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,sol}\"",
+    "vibe": "bash .vibe/quickstart.sh",
+    "vibe:start": "npx vibe-kanban"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "prettier": "^3.1.1",
+    "prettier-plugin-solidity": "^1.3.1",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "packageManager": "pnpm@10.18.2"
+}

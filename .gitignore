@@ -1,0 +1,92 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+.pnpm-store
+
+# Testing
+coverage/
+*.lcov
+.nyc_output
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Hardhat
+artifacts/
+cache/
+typechain-types/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# MCP Configuration (contains API keys)
+.mcp.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# IDEs
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*.swn
+.DS_Store
+
+# AI/LLM Tools
+.claude/
+.serena/
+.cursor/
+.aider/
+.vibe/
+
+# Temp files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Test outputs
+test-output.txt
+
+# OS
+Thumbs.db
+
+# Hardhat specific
+deployments/
+.openzeppelin/
+
+# Coverage
+coverage.json
+
+docs
+frontend/ca.crt
+frontend/ca.key
+
+# Machine Learning Models (ONNX, ORT, WASM)
+# Keep files locally but exclude from version control
+packages/frontend/public/models/skyseg/*.onnx
+packages/frontend/public/models/skyseg/*.ort
+packages/frontend/public/models/skyseg/*.ort.br
+packages/frontend/public/models/skyseg/*.wasm
+packages/frontend/public/models/skyseg/*.mjs
+!packages/frontend/public/models/skyseg/README.md
+
+# Model backup directory
+.model-backup/
+.git-backup-*
