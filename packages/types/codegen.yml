@@ -1,0 +1,36 @@
+# GraphQL Code Generator configuration for subgraph types
+# This generates TypeScript types from the GraphQL schema
+
+schema: ../subgraph/schema.graphql
+
+generates:
+  # Generate base TypeScript types
+  src/generated/subgraph-types.ts:
+    plugins:
+      - typescript
+    config:
+      # Use strict types
+      strict: true
+      # Use bigint for BigInt fields
+      scalars:
+        BigInt: bigint
+        BigDecimal: string
+        Bytes: string
+      # Make all fields non-nullable by default
+      maybeValue: T
+      # Use interface instead of type
+      declarationKind: interface
+      # Add JSDoc comments
+      addUnderscoreToArgsType: true
+      # Enum as const
+      enumsAsConst: true
+
+  # Generate query hooks (optional, for future use with GraphQL clients)
+  # Uncomment when integrating with urql/apollo/etc
+  # src/generated/subgraph-hooks.ts:
+  #   plugins:
+  #     - typescript
+  #     - typescript-operations
+  #     - typescript-urql
+  #   config:
+  #     withHooks: true

@@ -1,0 +1,59 @@
+{
+  "name": "@norosi/types",
+  "version": "0.1.0",
+  "description": "Shared TypeScript types for GeoRelationalNFT (NOROSI) monorepo",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./contract": {
+      "types": "./dist/contract.d.ts",
+      "import": "./dist/contract.js"
+    },
+    "./subgraph": {
+      "types": "./dist/subgraph.d.ts",
+      "import": "./dist/subgraph.js"
+    },
+    "./shared": {
+      "types": "./dist/shared.d.ts",
+      "import": "./dist/shared.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo",
+    "typecheck": "tsc --noEmit",
+    "generate": "pnpm run generate:contract && pnpm run generate:subgraph",
+    "generate:contract": "node scripts/generate-contract-types.js",
+    "generate:subgraph": "graphql-codegen --config codegen.yml",
+    "dev": "tsc --build --watch"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3",
+    "viem": "^2.21.54"
+  },
+  "peerDependencies": {
+    "viem": "^2.0.0"
+  },
+  "keywords": [
+    "geo",
+    "nft",
+    "types",
+    "typescript",
+    "norosi"
+  ],
+  "author": "NOROSI",
+  "license": "MIT"
+}
