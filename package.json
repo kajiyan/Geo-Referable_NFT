@@ -2,7 +2,7 @@
   "name": "@geo-nft/root",
   "version": "0.1.0",
   "private": true,
-  "description": "Geo-relational NFT Project - A monorepo for geo-based NFT smart contracts and client SDK",
+  "description": "Geo-relational NFT Project - A monorepo for geo-based NFT smart contracts",
   "scripts": {
     "build": "pnpm -r build",
     "test": "pnpm -r test",
@@ -11,8 +11,6 @@
     "contracts:compile": "pnpm --filter @geo-nft/contracts compile",
     "contracts:test": "pnpm --filter @geo-nft/contracts test",
     "contracts:deploy": "pnpm --filter @geo-nft/contracts deploy",
-    "client:build": "pnpm --filter @geo-nft/client build",
-    "client:test": "pnpm --filter @geo-nft/client test",
     "types:build": "pnpm --filter @norosi/types build",
     "types:generate": "pnpm --filter @norosi/types generate",
     "types:typecheck": "pnpm --filter @norosi/types typecheck",

@@ -27,7 +27,6 @@
     "@aws-sdk/client-s3": "^3.980.0",
     "@deck.gl/layers": "^8.9.36",
     "@deck.gl/mapbox": "^8.9.36",
-    "@geo-nft/client": "workspace:*",
     "@next/third-parties": "^16.1.6",
     "@norosi/types": "workspace:*",
     "@radix-ui/react-dialog": "^1.1.15",

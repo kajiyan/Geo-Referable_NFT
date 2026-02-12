@@ -22,7 +22,6 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@geo-nft/client": ["../client/src"],
       "@norosi/types": ["../types/src"],
       "@deck.gl/layers": ["./node_modules/@deck.gl/layers/typed"],
       "@deck.gl/core": ["./node_modules/@deck.gl/core/typed"],
