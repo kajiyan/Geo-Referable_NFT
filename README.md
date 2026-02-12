@@ -365,7 +365,6 @@ npx hardhat verify --network amoy <address> [constructorArgs...]
   - [ARCHITECTURE.md](packages/frontend/ARCHITECTURE.md): Frontend architecture
 - **[packages/subgraph/README.md](packages/subgraph/README.md)**: The Graph subgraph documentation
   - [DEPLOYMENT_GUIDE.md](packages/subgraph/DEPLOYMENT_GUIDE.md): Subgraph deployment
-  - [INTEGRATION_STATUS.md](packages/subgraph/INTEGRATION_STATUS.md): Integration status
 
 ## 🔒 Security
 
