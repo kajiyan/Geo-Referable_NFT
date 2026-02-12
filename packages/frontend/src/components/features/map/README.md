@@ -240,4 +240,4 @@ const processQueue = async () => {
 
 ## 動作確認
 
-`pnpm dev:frontend` でサーバーを起動し、<https://localhost:5173> にアクセスして確認できます。
+`pnpm frontend:dev` でサーバーを起動し、<https://localhost:3443> にアクセスして確認できます。

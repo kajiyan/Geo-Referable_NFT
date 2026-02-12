@@ -16,8 +16,7 @@ pnpm monorepo for geo-location based NFTs with H3 indexing, ERC-5521 references,
 ```text
 packages/
 ├── contracts/     # Hardhat smart contracts (GeoRelationalNFT.sol, Fumi.sol, GeoMath.sol, GeoMetadata.sol)
-├── client/        # Viem-based TypeScript SDK
-├── types/         # Shared TypeScript types
+├── types/         # Shared TypeScript types (@norosi/types)
 ├── subgraph/      # The Graph indexer
 └── frontend/      # Next.js web app (HTTPS required for WalletConnect)
 ```
@@ -30,7 +29,7 @@ pnpm test               # Run all tests
 pnpm lint               # Lint all packages
 pnpm contracts:compile  # Compile Solidity
 pnpm contracts:test     # Run contract tests (225 passing)
-pnpm dev:frontend       # Start frontend (https://localhost:5173)
+pnpm frontend:dev       # Start frontend (https://localhost:3443)
 ```
 
 ## Critical Conventions
@@ -48,7 +47,7 @@ return data[0];        // WRONG - will fail
 
 Stored as **millionths of a degree** (int256): `35.6789° → 35678900`
 
-See: [packages/client/src/types.ts](packages/client/src/types.ts) for `degreesToContract()` / `contractToDegrees()`
+See: [packages/types/src/utils.ts](packages/types/src/utils.ts) for `degreesToContract()` / `contractToDegrees()`
 
 ### H3 Indexing (4 levels)
 
@@ -70,7 +69,7 @@ Full addresses: [packages/contracts/deployments/](packages/contracts/deployments
 | Task | Document |
 |------|----------|
 | Contract architecture | [packages/contracts/contracts/](packages/contracts/contracts/) - read GeoRelationalNFT.sol |
-| Deployment workflow | [docs/deployment.md](docs/deployment.md) |
+| Deployment workflow | [packages/contracts/DEPLOYMENT_GUIDE.md](packages/contracts/DEPLOYMENT_GUIDE.md) |
 | Frontend HTTPS setup | Run `cd packages/frontend && pnpm generate:certs` |
 | Subgraph update | [packages/subgraph/README.md](packages/subgraph/README.md) |
 | Testing patterns | [packages/contracts/test/](packages/contracts/test/) |
@@ -78,5 +77,5 @@ Full addresses: [packages/contracts/deployments/](packages/contracts/deployments
 ## Quick Troubleshooting
 
 - **TypeScript errors after update**: `pnpm clean && pnpm install && pnpm build`
-- **WalletConnect fails**: Ensure HTTPS (`https://localhost:5173`), regenerate certs if needed
+- **WalletConnect fails**: Ensure HTTPS (`https://localhost:3443`), regenerate certs if needed
 - **Contract type errors**: `pnpm contracts:compile` then restart TS server

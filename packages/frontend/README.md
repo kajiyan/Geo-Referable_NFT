@@ -64,7 +64,6 @@ pnpm install
 
 # 依存パッケージをビルド
 pnpm types:build
-pnpm client:build
 ```
 
 ### ステップ3: WalletConnect の設定
@@ -192,7 +191,7 @@ $ pnpm dev:ssl
 > @geo-nft/frontend@0.1.0 dev:ssl
 > pnpm copy:onnx && concurrently "next dev --turbopack" "pnpm dev:https"
 
-[0]   ▲ Next.js 15.5.0
+[0]   ▲ Next.js 16.1.6
 [0]   - Local:        http://localhost:3000
 [0]   - Turbopack:    enabled
 [0]
@@ -285,9 +284,9 @@ Origin not found on Allowlist
 
 **対処**: WalletConnect Cloudで `https://localhost:3443` を許可リストに追加
 
-## 最新の環境設定（V3.6.0対応）
+## 最新の環境設定（V3.7.0対応）
 
-このプロジェクトは最新のコントラクト（V3.6.0）とSubgraph（V3.6.0）に対応しています。
+このプロジェクトは最新のコントラクト（V3.7.0）とSubgraph（V3.7.0）に対応しています。
 
 ### 環境変数の設定
 
@@ -300,8 +299,8 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=あなたのProject ID
 # コントラクトアドレス（V3.7.0）
 NEXT_PUBLIC_CONTRACT_ADDRESS=0xCF3C96a9a7080c5d8bBA706250681A9d27573847
 
-# Subgraph URL（V3.6.0）
-NEXT_PUBLIC_AMOY_SUBGRAPH_URL=https://api.studio.thegraph.com/query/112389/geo-relational-nft-amoy/v3.6.0
+# Subgraph URL（V3.7.0）
+NEXT_PUBLIC_AMOY_SUBGRAPH_URL=https://api.studio.thegraph.com/query/112389/geo-relational-nft-amoy/v3.7.0
 
 # ネットワーク設定
 NEXT_PUBLIC_CHAIN_ID=80002  # Polygon Amoy Testnet
@@ -501,7 +500,7 @@ frontend/
 
 ## 使用技術
 
-- **Next.js 15.5** - React フレームワーク
+- **Next.js 16.1** - React フレームワーク
 - **wagmi 2.16** - Ethereum ライブラリ
 - **RainbowKit 2.2** - Web3 ウォレット接続 UI
 - **Redux Toolkit** - 状態管理
@@ -511,7 +510,6 @@ frontend/
 - **Jest** - テストランナー
 - **React Testing Library** - React コンポーネントテスト
 - **@norosi/types** - 共有型定義（モノレポ内パッケージ）
-- **@geo-nft/client** - NFTクライアントSDK（モノレポ内パッケージ）
 
 ## スクリプト
 
@@ -880,13 +878,12 @@ src/
    ```bash
    # ルートディレクトリから各パッケージを順番にビルド
    pnpm types:build
-   pnpm client:build
    pnpm frontend:build
    ```
 
 ### モノレポの型依存関係
 
-**症状**: フロントエンドで `@norosi/types` や `@geo-nft/client` の型が認識されない
+**症状**: フロントエンドで `@norosi/types` の型が認識されない
 
 **原因**: 依存パッケージがビルドされていない
 
@@ -896,7 +893,6 @@ src/
 # ルートディレクトリから依存パッケージをビルド
 cd ../..
 pnpm types:build
-pnpm client:build
 pnpm frontend:build
 ```
 
@@ -932,7 +928,6 @@ pnpm frontend:build
 - [ルートREADME](../../README.md): プロジェクト全体の概要
 - [CLAUDE.md](../../CLAUDE.md): 技術ドキュメント
 - [packages/types/README.md](../types/README.md): 型定義パッケージ
-- [packages/client/](../client/): クライアントSDK
 - [packages/contracts/](../contracts/): スマートコントラクト
 
 ## ライセンス

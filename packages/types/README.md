@@ -619,7 +619,6 @@ This package is part of the NOROSI monorepo. When adding new types:
 
 ## Related Packages
 
-- `@norosi/client` - Client SDK (uses contract types)
 - `packages/contracts` - Smart contracts (source of truth for contract types)
 - `packages/subgraph` - The Graph indexer (source of truth for subgraph types)
 - `packages/frontend` - Frontend application (uses all types)

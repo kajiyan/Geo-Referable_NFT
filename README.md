@@ -20,38 +20,30 @@ A cutting-edge NFT system combining geographic location, H3 spatial indexing, an
 ### Technical Highlights
 
 - **Smart Contracts**: ERC-721 with geographical metadata + advanced features
-- **Type-Safe Client**: Fully typed TypeScript SDK built with Viem
+- **Shared Type Definitions**: Fully typed TypeScript types with Viem support (@norosi/types)
 - **Modern Tooling**: Hardhat, Viem, TypeScript, PNPM monorepo, Vitest
 - **Gas Optimized**: Modular design, SSTORE2, decimal encoding, viaIR compilation
 - **Security**: OpenZeppelin v5.x, EIP-712, pausable functionality, safe external calls
-- **Test Coverage**: 187 passing tests (100% success rate)
+- **Test Coverage**: 225 passing tests (100% success rate)
 
 **Brand**: NOROSI | **Domain**: norosi.xyz
 
 ## 🌐 Deployed Contracts
 
-### Amoy Testnet (Polygon zkEVM - Latest Version V3.6.0)
+### Amoy Testnet (Polygon zkEVM - Latest Version V3.7.0)
 
 All contracts deployed on Amoy (Chain ID: 80002):
 
-- **DateTime**: [`0x1f1b048997b4fD43d626C2C8e9BAd7B145e8dADc`](https://amoy.polygonscan.com/address/0x1f1b048997b4fD43d626C2C8e9BAd7B145e8dADc)
-- **GeoMath**: [`0x2ac4deA479c4cD4bEf8DE914292a28ed8072C49C`](https://amoy.polygonscan.com/address/0x2ac4deA479c4cD4bEf8DE914292a28ed8072C49C)
-- **GeoMetadata**: [`0x4A133055Cb52Ea24eEEf99E61D2Bd8396e16cF8b`](https://amoy.polygonscan.com/address/0x4A133055Cb52Ea24eEEf99E61D2Bd8396e16cF8b)
-- **NOROSIFont**: [`0x9147d833Ed4069F59Ba34e4d161c1fe8d6D5b4Ac`](https://amoy.polygonscan.com/address/0x9147d833Ed4069F59Ba34e4d161c1fe8d6D5b4Ac)
-- **Fumi**: [`0xe60b93f0412648F777Fa0519Edf6847317bCfB0F`](https://amoy.polygonscan.com/address/0xe60b93f0412648F777Fa0519Edf6847317bCfB0F)
-- **GeoRelationalNFT**: [`0x776Cd3f6FC7558d7e930a656288116ca1D242008`](https://amoy.polygonscan.com/address/0x776Cd3f6FC7558d7e930a656288116ca1D242008)
+- **DateTime**: [`0x20A287615768903478A97E526DEDfB8c5f7d1Bb6`](https://amoy.polygonscan.com/address/0x20A287615768903478A97E526DEDfB8c5f7d1Bb6)
+- **GeoMath**: [`0xCBE6Fcdb1210CE68C0767Bc0a33f31E6c4D996e0`](https://amoy.polygonscan.com/address/0xCBE6Fcdb1210CE68C0767Bc0a33f31E6c4D996e0)
+- **GeoMetadata**: [`0x963F740813e35Fa5573A0838F4aB18F21e20324F`](https://amoy.polygonscan.com/address/0x963F740813e35Fa5573A0838F4aB18F21e20324F)
+- **NOROSIFont**: [`0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA`](https://amoy.polygonscan.com/address/0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA)
+- **Fumi**: [`0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9`](https://amoy.polygonscan.com/address/0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9)
+- **GeoRelationalNFT**: [`0xCF3C96a9a7080c5d8bBA706250681A9d27573847`](https://amoy.polygonscan.com/address/0xCF3C96a9a7080c5d8bBA706250681A9d27573847)
 
-**Network**: Amoy (Polygon zkEVM Testnet) | **Deployed**: 2026-01-15 | **Contract Version**: V3.6.0
+**Network**: Amoy (Polygon zkEVM Testnet) | **Deployed**: 2026-02-01 | **Contract Version**: V3.7.0
 
-**Subgraph**: [V3.6.0](https://api.studio.thegraph.com/query/112389/geo-relational-nft-amoy/v3.6.0)
-
-### Sepolia Testnet (Legacy Version)
-
-⚠️ **Note**: Sepolia deployment uses an older architecture (3-level H3, no GeoMath/GeoMetadata). For latest features, use Amoy deployment.
-
-- **DateTime**: [`0x896D253F8d5cc6E6A6f968F2E96cC1961Fe81119`](https://sepolia.etherscan.io/address/0x896D253F8d5cc6E6A6f968F2E96cC1961Fe81119#code) ✅
-- **Fumi**: [`0xc97efD70f1B0563FC4f09f64001639d6d1CE10fd`](https://sepolia.etherscan.io/address/0xc97efD70f1B0563FC4f09f64001639d6d1CE10fd#code) ✅
-- **GeoRelationalNFT**: [`0x7b05Ae982330Ab9C3dBbaE47ec1AE8e7a32458b5`](https://sepolia.etherscan.io/address/0x7b05Ae982330Ab9C3dBbaE47ec1AE8e7a32458b5#code) ✅
+**Subgraph**: [V3.7.0](https://api.studio.thegraph.com/query/112389/geo-relational-nft-amoy/v3.7.0)
 
 See [packages/contracts/DEPLOYMENT_GUIDE.md](packages/contracts/DEPLOYMENT_GUIDE.md) for detailed deployment information.
 
@@ -62,8 +54,7 @@ This project is organized as a pnpm workspace monorepo:
 ```
 packages/
 ├── contracts/      # Smart contracts (Hardhat + Solidity)
-├── client/         # TypeScript SDK (Viem-based client library)
-├── types/          # Shared TypeScript types for all packages
+├── types/          # Shared TypeScript types for all packages (@norosi/types)
 ├── subgraph/       # The Graph indexer for on-chain data
 └── frontend/       # Next.js web application (React + wagmi)
 ```
@@ -92,7 +83,7 @@ pnpm install
 ### Build All Packages
 
 ```bash
-# Build everything (types → contracts → client → frontend → subgraph)
+# Build everything (types → contracts → frontend → subgraph)
 pnpm build
 
 # Build specific package
@@ -106,7 +97,7 @@ pnpm --filter @norosi/types build
 # Compile smart contracts
 pnpm contracts:compile
 
-# Run all tests (contracts + client + frontend)
+# Run all tests (contracts + frontend)
 pnpm test
 
 # Start frontend development server
@@ -124,7 +115,7 @@ import { ethers } from 'hardhat';
 // Get contract instance (Amoy testnet)
 const contract = await ethers.getContractAt(
   'GeoRelationalNFT',
-  '0x28eb9A8971672943BDb75495e3dAed5A5c5F1caE',
+  '0xCF3C96a9a7080c5d8bBA706250681A9d27573847',
 );
 
 // Mint a GeoRelationalNFT with 4-level H3 indices
@@ -193,7 +184,7 @@ GeoRelationalNFT
 
 ## 🧪 Testing
 
-**187 passing tests** (100% success rate):
+**225 passing tests** (100% success rate):
 
 ```bash
 # Run all tests
@@ -235,8 +226,6 @@ pnpm format:check       # Check formatting
 # Package-specific shortcuts
 pnpm contracts:compile  # Compile smart contracts
 pnpm contracts:test     # Run contract tests
-pnpm client:build       # Build client SDK
-pnpm client:test        # Run client tests
 pnpm types:build        # Build types package
 pnpm types:generate     # Generate types from contracts & subgraph
 pnpm frontend:dev       # Start frontend dev server
@@ -248,22 +237,12 @@ pnpm frontend:test      # Run frontend tests
 
 ```bash
 pnpm compile          # Compile Solidity contracts
-pnpm test             # Run Hardhat tests (187 passing)
+pnpm test             # Run Hardhat tests (225 passing)
 pnpm test:coverage    # Run tests with coverage
 pnpm deploy:sepolia   # Deploy to Sepolia (legacy)
 pnpm deploy:amoy      # Deploy to Amoy (latest)
 pnpm node             # Start local Hardhat node
 pnpm clean            # Clean artifacts
-```
-
-### Client SDK (`packages/client/`)
-
-```bash
-pnpm build       # Build TypeScript SDK
-pnpm test        # Run Vitest tests
-pnpm test:watch  # Run tests in watch mode
-pnpm typecheck   # Type checking only
-pnpm lint        # Lint TypeScript
 ```
 
 ### Types (`packages/types/`)
@@ -381,7 +360,6 @@ npx hardhat verify --network amoy <address> [constructorArgs...]
 - **[packages/contracts/](packages/contracts/)**: Smart contracts
   - [DEPLOYMENT_GUIDE.md](packages/contracts/DEPLOYMENT_GUIDE.md): Contract deployment guide
   - [contracts/README.md](packages/contracts/contracts/README.md): Contract architecture
-- **[packages/client/](packages/client/)**: TypeScript SDK (see source code docs)
 - **[packages/types/README.md](packages/types/README.md)**: Shared types documentation
 - **[packages/frontend/README.md](packages/frontend/README.md)**: Frontend setup and development
   - [ARCHITECTURE.md](packages/frontend/ARCHITECTURE.md): Frontend architecture
@@ -431,7 +409,7 @@ Complete architectural improvements:
 ## 📈 Performance
 
 - **Contract Size**: 23 KB (4.2% under limit)
-- **Test Success**: 100% (187/187 passing)
+- **Test Success**: 100% (225/225 passing)
 - **Gas Efficiency**: Modular design + SSTORE2 + decimal encoding
 - **Type Safety**: Full TypeScript coverage
 
@@ -499,7 +477,6 @@ MIT
 ## 🔗 Resources
 
 - [Amoy PolygonScan](https://amoy.polygonscan.com/)
-- [Sepolia Etherscan](https://sepolia.etherscan.io/)
 - [Hardhat Docs](https://hardhat.org/docs)
 - [Viem Docs](https://viem.sh/)
 - [OpenZeppelin](https://docs.openzeppelin.com/contracts)
@@ -509,4 +486,4 @@ MIT
 
 **Built with**: Hardhat + Viem + OpenZeppelin v5.x + H3 Indexing
 
-**Status**: ✅ Amoy Testnet (Latest) | ✅ 187 Tests Passing | ✅ Production Ready
+**Status**: ✅ Amoy Testnet (Latest V3.7.0) | ✅ 225 Tests Passing | ✅ Production Ready

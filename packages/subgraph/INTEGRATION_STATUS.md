@@ -279,10 +279,6 @@ All critical functionality is implemented and working correctly.
 - ⚠️ Component props need updating (weather → colorIndex)
 - 📋 Follow MIGRATION_PLAN.md Phase 2 and Phase 3
 
-**Client SDK** (`packages/client`):
-- ✅ Already updated to contract v2 (per CLAUDE.md)
-- ✅ Viem-based client compatible
-
 **Smart Contracts** (`packages/contracts`):
 - ✅ Already deployed to Amoy with v2 features
 - ✅ ABI matches subgraph expectations

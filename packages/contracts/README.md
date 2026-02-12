@@ -602,28 +602,23 @@ npx hardhat run scripts/deploy.ts --network amoy
 npx hardhat run scripts/deploy.ts --network sepolia
 ```
 
-### 最新デプロイ（V3.6.0 - 2026年1月15日）
+### 最新デプロイ（V3.7.0 - 2026年2月1日）
 
 **ネットワーク**: Polygon Amoy Testnet (Chain ID: 80002)
 
 | Contract | Address | 検証済み |
 |----------|---------|----------|
-| DateTime | [`0x1f1b048997b4fD43d626C2C8e9BAd7B145e8dADc`](https://amoy.polygonscan.com/address/0x1f1b048997b4fD43d626C2C8e9BAd7B145e8dADc) | ✅ |
-| GeoMath | [`0x2ac4deA479c4cD4bEf8DE914292a28ed8072C49C`](https://amoy.polygonscan.com/address/0x2ac4deA479c4cD4bEf8DE914292a28ed8072C49C) | ✅ |
-| GeoMetadata | [`0x4A133055Cb52Ea24eEEf99E61D2Bd8396e16cF8b`](https://amoy.polygonscan.com/address/0x4A133055Cb52Ea24eEEf99E61D2Bd8396e16cF8b) | ✅ |
-| NOROSIFont | [`0x9147d833Ed4069F59Ba34e4d161c1fe8d6D5b4Ac`](https://amoy.polygonscan.com/address/0x9147d833Ed4069F59Ba34e4d161c1fe8d6D5b4Ac) | ✅ |
-| Fumi | [`0xe60b93f0412648F777Fa0519Edf6847317bCfB0F`](https://amoy.polygonscan.com/address/0xe60b93f0412648F777Fa0519Edf6847317bCfB0F) | ✅ |
-| **GeoRelationalNFT** | [`0x776Cd3f6FC7558d7e930a656288116ca1D242008`](https://amoy.polygonscan.com/address/0x776Cd3f6FC7558d7e930a656288116ca1D242008) | ✅ |
+| DateTime | [`0x20A287615768903478A97E526DEDfB8c5f7d1Bb6`](https://amoy.polygonscan.com/address/0x20A287615768903478A97E526DEDfB8c5f7d1Bb6) | ✅ |
+| GeoMath | [`0xCBE6Fcdb1210CE68C0767Bc0a33f31E6c4D996e0`](https://amoy.polygonscan.com/address/0xCBE6Fcdb1210CE68C0767Bc0a33f31E6c4D996e0) | ✅ |
+| GeoMetadata | [`0x963F740813e35Fa5573A0838F4aB18F21e20324F`](https://amoy.polygonscan.com/address/0x963F740813e35Fa5573A0838F4aB18F21e20324F) | ✅ |
+| NOROSIFont | [`0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA`](https://amoy.polygonscan.com/address/0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA) | ✅ |
+| Fumi | [`0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9`](https://amoy.polygonscan.com/address/0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9) | ✅ |
+| **GeoRelationalNFT** | [`0xCF3C96a9a7080c5d8bBA706250681A9d27573847`](https://amoy.polygonscan.com/address/0xCF3C96a9a7080c5d8bBA706250681A9d27573847) | ✅ |
 
-**バージョン**: V3.6.0
+**バージョン**: V3.7.0
 **テスト結果**: 225 passing tests
 
-**修正（V3.6.0）**:
-
-- FumiMinted を ReferenceCreated の前に発行するよう修正
-- Subgraph で TokenReference エンティティが正しく作成されるように
-
-詳細は [DEPLOYMENT_2025-10-31.md](/DEPLOYMENT_2025-10-31.md) を参照してください。
+詳細は [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) を参照してください。
 
 ---
 
@@ -654,7 +649,7 @@ pnpm test:coverage
 pnpm test -- --grep "should mint with H3 parameters"
 ```
 
-**テスト状況**: 63 passing (51 Fumi + 12 NOROSIFont)
+**テスト状況**: 225 passing
 
 ### ガスレポート
 
@@ -778,6 +773,6 @@ MIT License
 
 ---
 
-**Last Updated**: 2025年10月30日
+**Last Updated**: 2026年2月
 **Solidity Version**: 0.8.24
 **OpenZeppelin**: v5.0.1
