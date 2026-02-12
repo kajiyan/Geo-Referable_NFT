@@ -30,8 +30,8 @@ const DOMAIN_VERSION = '2'
 const CHAIN_ID = 80002n // Amoy
 const CONTRACT_ADDRESS = '0x776Cd3f6FC7558d7e930a656288116ca1D242008' as `0x${string}`
 
-// Signer
-const SIGNER_PRIVATE_KEY = '0x1610a86d0c06700edd2544250ae774596e728c59dae445f62e23f5d59767ff53' as `0x${string}`
+// Signer (loaded from environment variable)
+const SIGNER_PRIVATE_KEY = (process.env.PRIVATE_KEY ?? '0x') as `0x${string}`
 
 async function main() {
   console.log('=== Debug Signature for Failed Transaction ===\n')
