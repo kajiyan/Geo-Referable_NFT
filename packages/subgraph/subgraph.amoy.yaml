@@ -9,8 +9,8 @@ dataSources:
     network: polygon-amoy
     source:
       abi: GeoReferableNFT
-      address: "0xCF3C96a9a7080c5d8bBA706250681A9d27573847"
-      startBlock: 33148577
+      address: "0x4D765E2c06507e7D958A0b2677C85BE7235e889E"
+      startBlock: 33621701
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.9

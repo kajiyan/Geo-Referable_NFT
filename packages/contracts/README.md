@@ -602,20 +602,20 @@ npx hardhat run scripts/deploy.ts --network amoy
 npx hardhat run scripts/deploy.ts --network sepolia
 ```
 
-### 最新デプロイ（V3.7.0 - 2026年2月1日）
+### 最新デプロイ（V3.8.0 - 2026年2月12日）
 
 **ネットワーク**: Polygon Amoy Testnet (Chain ID: 80002)
 
 | Contract | Address | 検証済み |
 |----------|---------|----------|
-| DateTime | [`0x20A287615768903478A97E526DEDfB8c5f7d1Bb6`](https://amoy.polygonscan.com/address/0x20A287615768903478A97E526DEDfB8c5f7d1Bb6) | ✅ |
-| GeoMath | [`0xCBE6Fcdb1210CE68C0767Bc0a33f31E6c4D996e0`](https://amoy.polygonscan.com/address/0xCBE6Fcdb1210CE68C0767Bc0a33f31E6c4D996e0) | ✅ |
-| GeoMetadata | [`0x963F740813e35Fa5573A0838F4aB18F21e20324F`](https://amoy.polygonscan.com/address/0x963F740813e35Fa5573A0838F4aB18F21e20324F) | ✅ |
-| NOROSIFont | [`0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA`](https://amoy.polygonscan.com/address/0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA) | ✅ |
-| Fumi | [`0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9`](https://amoy.polygonscan.com/address/0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9) | ✅ |
-| **GeoReferableNFT** | [`0xCF3C96a9a7080c5d8bBA706250681A9d27573847`](https://amoy.polygonscan.com/address/0xCF3C96a9a7080c5d8bBA706250681A9d27573847) | ✅ |
+| DateTime | [`0x02006eFC55C00fA4B8eE53142618f4A2064D9587`](https://amoy.polygonscan.com/address/0x02006eFC55C00fA4B8eE53142618f4A2064D9587) | ✅ |
+| GeoMath | [`0xB266f093092d58E9750650914b18a4f830aD8085`](https://amoy.polygonscan.com/address/0xB266f093092d58E9750650914b18a4f830aD8085) | ✅ |
+| GeoMetadata | [`0x4682Ba294b95fBE0a6d09501Dda04dF923957418`](https://amoy.polygonscan.com/address/0x4682Ba294b95fBE0a6d09501Dda04dF923957418) | ✅ |
+| NOROSIFont | [`0x23159654a4Df89d9Fa81269a24C7ac5F1939efC8`](https://amoy.polygonscan.com/address/0x23159654a4Df89d9Fa81269a24C7ac5F1939efC8) | ✅ |
+| Fumi | [`0x03D35F603388532dd76B62C62FfE249cdff319AE`](https://amoy.polygonscan.com/address/0x03D35F603388532dd76B62C62FfE249cdff319AE) | ✅ |
+| **GeoReferableNFT** | [`0x4D765E2c06507e7D958A0b2677C85BE7235e889E`](https://amoy.polygonscan.com/address/0x4D765E2c06507e7D958A0b2677C85BE7235e889E) | ✅ |
 
-**バージョン**: V3.7.0
+**バージョン**: V3.8.0
 **テスト結果**: 225 passing tests
 
 詳細は [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) を参照してください。

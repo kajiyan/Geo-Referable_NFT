@@ -284,9 +284,9 @@ Origin not found on Allowlist
 
 **対処**: WalletConnect Cloudで `https://localhost:3443` を許可リストに追加
 
-## 最新の環境設定（V3.7.0対応）
+## 最新の環境設定（V3.8.0対応）
 
-このプロジェクトは最新のコントラクト（V3.7.0）とSubgraph（V3.7.0）に対応しています。
+このプロジェクトは最新のコントラクト（V3.8.0）とSubgraph（V3.8.0）に対応しています。
 
 ### 環境変数の設定
 
@@ -296,11 +296,11 @@ Origin not found on Allowlist
 # WalletConnect Project ID（必須）
 NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=あなたのProject ID
 
-# コントラクトアドレス（V3.7.0）
-NEXT_PUBLIC_CONTRACT_ADDRESS=0xCF3C96a9a7080c5d8bBA706250681A9d27573847
+# コントラクトアドレス（V3.8.0）
+NEXT_PUBLIC_CONTRACT_ADDRESS=0x4D765E2c06507e7D958A0b2677C85BE7235e889E
 
-# Subgraph URL（V3.7.0）
-NEXT_PUBLIC_AMOY_SUBGRAPH_URL=https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.7.0
+# Subgraph URL（V3.8.0）
+NEXT_PUBLIC_AMOY_SUBGRAPH_URL=https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.8.0
 
 # ネットワーク設定
 NEXT_PUBLIC_CHAIN_ID=80002  # Polygon Amoy Testnet

@@ -6,15 +6,15 @@ export const SUPPORTED_CHAINS = {
   MAINNET: 1,           // Ethereum mainnet
 } as const
 
-// Contract addresses (V3.7.0 - 2026-02-01 - NOROSI branding, EIP712 domain fix, external_url)
+// Contract addresses (V3.8.0 - 2026-02-12 - GeoReferableNFT rename deployment)
 export const CONTRACT_ADDRESSES = {
   [SUPPORTED_CHAINS.POLYGON_AMOY]: {
-    GEO_REFERABLE_NFT: '0xCF3C96a9a7080c5d8bBA706250681A9d27573847' as `0x${string}`,
-    DATE_TIME: '0x20A287615768903478A97E526DEDfB8c5f7d1Bb6' as `0x${string}`,
-    GEO_MATH: '0xCBE6Fcdb1210CE68C0767Bc0a33f31E6c4D996e0' as `0x${string}`,
-    GEO_METADATA: '0x963F740813e35Fa5573A0838F4aB18F21e20324F' as `0x${string}`,
-    NOROSI_FONT: '0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA' as `0x${string}`,
-    FUMI: '0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9' as `0x${string}`,
+    GEO_REFERABLE_NFT: '0x4D765E2c06507e7D958A0b2677C85BE7235e889E' as `0x${string}`,
+    DATE_TIME: '0x02006eFC55C00fA4B8eE53142618f4A2064D9587' as `0x${string}`,
+    GEO_MATH: '0xB266f093092d58E9750650914b18a4f830aD8085' as `0x${string}`,
+    GEO_METADATA: '0x4682Ba294b95fBE0a6d09501Dda04dF923957418' as `0x${string}`,
+    NOROSI_FONT: '0x23159654a4Df89d9Fa81269a24C7ac5F1939efC8' as `0x${string}`,
+    FUMI: '0x03D35F603388532dd76B62C62FfE249cdff319AE' as `0x${string}`,
   },
   [SUPPORTED_CHAINS.POLYGON]: {
     // To be deployed

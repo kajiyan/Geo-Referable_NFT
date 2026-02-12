@@ -57,10 +57,10 @@ All mint functions require 4 H3 parameters: `h3r6`, `h3r8`, `h3r10`, `h3r12`
 
 `tokenId = quadrant × 10^20 + |lat| × 10^10 + |lon|` (quadrant: 0=NE, 1=SE, 2=NW, 3=SW)
 
-## Deployments (Amoy - V3.7.0)
+## Deployments (Amoy - V3.8.0)
 
-- **GeoReferableNFT**: `0xCF3C96a9a7080c5d8bBA706250681A9d27573847`
-- **Subgraph**: `https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.7.0`
+- **GeoReferableNFT**: `0x4D765E2c06507e7D958A0b2677C85BE7235e889E`
+- **Subgraph**: `https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.8.0`
 
 Full addresses: [packages/contracts/deployments/](packages/contracts/deployments/)
 

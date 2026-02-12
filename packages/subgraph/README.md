@@ -58,7 +58,7 @@ Edit the appropriate manifest file:
 
 ```yaml
 source:
-  address: '0xCF3C96a9a7080c5d8bBA706250681A9d27573847'
+  address: '0x4D765E2c06507e7D958A0b2677C85BE7235e889E'
   startBlock: 33148577
 ```
 
@@ -73,9 +73,9 @@ source:
 **Current Deployments:**
 
 - **Amoy (Polygon zkEVM Testnet)**:
-  - **Contract**: `0xCF3C96a9a7080c5d8bBA706250681A9d27573847` (V3.7.0)
-  - **Subgraph**: V3.7.0
-  - **Query Endpoint**: `https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.7.0`
+  - **Contract**: `0x4D765E2c06507e7D958A0b2677C85BE7235e889E` (V3.8.0)
+  - **Subgraph**: V3.8.0
+  - **Query Endpoint**: `https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.8.0`
   - **Start Block**: `33148577`
 - **Polygon Mainnet**: Not yet deployed (update `subgraph.polygon.yaml` after deployment)
 

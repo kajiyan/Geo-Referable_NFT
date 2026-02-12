@@ -30,20 +30,20 @@ A cutting-edge NFT system combining geographic location, H3 spatial indexing, an
 
 ## 🌐 Deployed Contracts
 
-### Amoy Testnet (Polygon zkEVM - Latest Version V3.7.0)
+### Amoy Testnet (Polygon zkEVM - Latest Version V3.8.0)
 
 All contracts deployed on Amoy (Chain ID: 80002):
 
-- **DateTime**: [`0x20A287615768903478A97E526DEDfB8c5f7d1Bb6`](https://amoy.polygonscan.com/address/0x20A287615768903478A97E526DEDfB8c5f7d1Bb6)
-- **GeoMath**: [`0xCBE6Fcdb1210CE68C0767Bc0a33f31E6c4D996e0`](https://amoy.polygonscan.com/address/0xCBE6Fcdb1210CE68C0767Bc0a33f31E6c4D996e0)
-- **GeoMetadata**: [`0x963F740813e35Fa5573A0838F4aB18F21e20324F`](https://amoy.polygonscan.com/address/0x963F740813e35Fa5573A0838F4aB18F21e20324F)
-- **NOROSIFont**: [`0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA`](https://amoy.polygonscan.com/address/0x4E10895b2d9D0493aFac7C648991F79B7C7BfFcA)
-- **Fumi**: [`0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9`](https://amoy.polygonscan.com/address/0xd4b3285aB4fCAE666207108E9e3432eBac24B3f9)
-- **GeoReferableNFT**: [`0xCF3C96a9a7080c5d8bBA706250681A9d27573847`](https://amoy.polygonscan.com/address/0xCF3C96a9a7080c5d8bBA706250681A9d27573847)
+- **DateTime**: [`0x02006eFC55C00fA4B8eE53142618f4A2064D9587`](https://amoy.polygonscan.com/address/0x02006eFC55C00fA4B8eE53142618f4A2064D9587)
+- **GeoMath**: [`0xB266f093092d58E9750650914b18a4f830aD8085`](https://amoy.polygonscan.com/address/0xB266f093092d58E9750650914b18a4f830aD8085)
+- **GeoMetadata**: [`0x4682Ba294b95fBE0a6d09501Dda04dF923957418`](https://amoy.polygonscan.com/address/0x4682Ba294b95fBE0a6d09501Dda04dF923957418)
+- **NOROSIFont**: [`0x23159654a4Df89d9Fa81269a24C7ac5F1939efC8`](https://amoy.polygonscan.com/address/0x23159654a4Df89d9Fa81269a24C7ac5F1939efC8)
+- **Fumi**: [`0x03D35F603388532dd76B62C62FfE249cdff319AE`](https://amoy.polygonscan.com/address/0x03D35F603388532dd76B62C62FfE249cdff319AE)
+- **GeoReferableNFT**: [`0x4D765E2c06507e7D958A0b2677C85BE7235e889E`](https://amoy.polygonscan.com/address/0x4D765E2c06507e7D958A0b2677C85BE7235e889E)
 
-**Network**: Amoy (Polygon zkEVM Testnet) | **Deployed**: 2026-02-01 | **Contract Version**: V3.7.0
+**Network**: Amoy (Polygon zkEVM Testnet) | **Deployed**: 2026-02-12 | **Contract Version**: V3.8.0
 
-**Subgraph**: [V3.7.0](https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.7.0)
+**Subgraph**: [V3.8.0](https://api.studio.thegraph.com/query/112389/geo-referable-nft-amoy/v3.8.0)
 
 See [packages/contracts/DEPLOYMENT_GUIDE.md](packages/contracts/DEPLOYMENT_GUIDE.md) for detailed deployment information.
 
@@ -115,7 +115,7 @@ import { ethers } from 'hardhat';
 // Get contract instance (Amoy testnet)
 const contract = await ethers.getContractAt(
   'GeoReferableNFT',
-  '0xCF3C96a9a7080c5d8bBA706250681A9d27573847',
+  '0x4D765E2c06507e7D958A0b2677C85BE7235e889E',
 );
 
 // Mint a GeoReferableNFT with 4-level H3 indices
@@ -485,4 +485,4 @@ MIT
 
 **Built with**: Hardhat + Viem + OpenZeppelin v5.x + H3 Indexing
 
-**Status**: ✅ Amoy Testnet (Latest V3.7.0) | ✅ 225 Tests Passing | ✅ Production Ready
+**Status**: ✅ Amoy Testnet (Latest V3.8.0) | ✅ 225 Tests Passing | ✅ Production Ready
